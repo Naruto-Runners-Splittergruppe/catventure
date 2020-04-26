@@ -7,7 +7,7 @@ public class TestScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        print("Hello World");
+        print("Hello World! This is a Test.");
     }
 
     // Update is called once per frame
