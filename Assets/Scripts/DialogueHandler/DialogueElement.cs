@@ -9,7 +9,7 @@ public class DialogueElement
     public enum AvatarPos { left, right};
     public string speakerName;
     public AvatarPos speakerPosition;
-    public Texture2D speakerPic;
+    public Sprite speakerPic;
     public string dialogueText;
     public GUIStyle dialogueFont;
     public float playbackSpeed;
