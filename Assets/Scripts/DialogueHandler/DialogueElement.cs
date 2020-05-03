@@ -10,14 +10,13 @@ public class DialogueElement
     public string speakerName;
     public AvatarPos speakerPosition;
     public Sprite speakerPic;
-    public string dialogueText;
+    public string dialogueTextGerman;
+    public string dialogueTextEnglish;
     public GUIStyle dialogueFont;
     public float playbackSpeed;
     public AudioClip soundForTextScrolling;
     public string nameOfMethodeToActivateBeforeNextText;
     public bool waitUntilMethodeIsFinished;
-    public bool isMultichoice;
-    [Header("Is only used, if isMultichoice is true")]
-    public MultiChoiceDialogue multiChoiceDialogue;
+    public List<MultiChoiceDialogue> multiChoiceDialogue;
 }
 

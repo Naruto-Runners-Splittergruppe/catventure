@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,20 +12,22 @@ public class DialogueHandler : MonoBehaviour
     public Image speakerRight;
     [Header("----------")]
     public Dialogue dialogue;
+    public string language = "english";
+    public event EventHandler dialogueEndedEventHandler;
 
     private bool dialogeFinishedPrinting;
 
-
-    // Start is called before the first frame update
-    void Start()
+    public void StartDialogue(Dialogue dialogue)
     {
-        StartCoroutine("PrintDialogue");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        this.dialogue = dialogue;
+        if (dialogueText != null && speakerLeft != null && speakerRight != null)
+        {
+            StartCoroutine("PrintDialogue");
+        }
+        else
+        {
+            Debug.LogError("UI elements not set correctly.");
+        }
     }
 
     IEnumerator PrintDialogue()
@@ -38,6 +41,7 @@ public class DialogueHandler : MonoBehaviour
         while (!dialogueHasEnded)
         {
             DialogueElement currElement = dialogue.dialogueItems[i];
+            string currentText = GetDialogueTextInCurrentLanguage(currElement);
 
             if (currElement.speakerPosition == DialogueElement.AvatarPos.left)
             {
@@ -51,7 +55,7 @@ public class DialogueHandler : MonoBehaviour
             }
             StartCoroutine("PrintDialogueItem", currElement);
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.05f);
             while (!Input.GetButtonDown("Interact"))
             {
                 yield return null;
@@ -61,8 +65,8 @@ public class DialogueHandler : MonoBehaviour
             if (!dialogeFinishedPrinting)
             {
                 StopCoroutine("PrintDialogueItem");
-                dialogueText.text = currElement.dialogueText;
-                yield return new WaitForSeconds(0.5f);
+                dialogueText.text = currentText;
+                yield return new WaitForSeconds(0.05f);
                 while (!Input.GetButtonDown("Interact"))
                 {
                     yield return null;
@@ -78,18 +82,20 @@ public class DialogueHandler : MonoBehaviour
                 dialogueHasEnded = true;
             }
         }
+        dialogueEndedEventHandler.Invoke(this,null);
         ChangeEnabledStateOfUiObjects(false);
     }
 
-    IEnumerator PrintDialogueItem(DialogueElement de)
+    IEnumerator PrintDialogueItem(DialogueElement elem)
     {
+        string text = GetDialogueTextInCurrentLanguage(elem);
         dialogeFinishedPrinting = false;
         int j = 0;
-        while(j < de.dialogueText.Length)
+        while(j < text.Length)
         {
-            dialogueText.text += de.dialogueText[j];
+            dialogueText.text += text[j];
             j++;
-            yield return new WaitForSeconds(de.playbackSpeed);
+            yield return new WaitForSeconds(elem.playbackSpeed);
         }
         dialogeFinishedPrinting = true;
     }
@@ -99,5 +105,17 @@ public class DialogueHandler : MonoBehaviour
         speakerLeft.enabled = state;
         speakerRight.enabled = state;
         dialogueText.enabled = state;
+    }
+
+    private string GetDialogueTextInCurrentLanguage(DialogueElement elem)
+    {
+        if(language == "german")
+        {
+            return elem.dialogueTextGerman;
+        }
+        else
+        {
+            return elem.dialogueTextEnglish;
+        }
     }
 }

@@ -12,7 +12,9 @@ GameObject:
   - component: {fileID: 3714448213325722344}
   - component: {fileID: 3714448213325722345}
   - component: {fileID: 3714448213325722350}
-  - component: {fileID: 3714448213325722346}
+  - component: {fileID: 495674121}
+  - component: {fileID: 495674120}
+  - component: {fileID: 495674115}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -104,7 +106,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!60 &3714448213325722350
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -137,7 +139,58 @@ PolygonCollider2D:
       - {x: 0.14936288, y: -0.24745142}
       - {x: 0.12765136, y: 0.10507929}
       - {x: 0.10850875, y: 0.22561967}
---- !u!114 &3714448213325722346
+--- !u!60 &495674121
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3714448213325722351}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.5, y: 0.5}
+    newSize: {x: 0.5, y: 0.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.019999996, y: 0.22913349}
+      - {x: -0.06, y: 0.16}
+      - {x: -0.17261124, y: -0.053770542}
+      - {x: -0.1721606, y: -0.2474514}
+      - {x: 0.14936288, y: -0.24745142}
+      - {x: 0.12765136, y: 0.10507929}
+      - {x: 0.10850875, y: 0.22561967}
+--- !u!95 &495674120
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3714448213325722351}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cef549d530d231e46afc946156d55ba2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &495674115
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -146,6 +199,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 3714448213325722351}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72086f8b6373bab4691169162d8e8ad6, type: 3}
+  m_Script: {fileID: 11500000, guid: 577b496fcb1222e468bf5c3cc285f36e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 1
+  jumpPower: 250
