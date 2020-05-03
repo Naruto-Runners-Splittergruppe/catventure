@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - DialogueBox
+  - VariableEventSystem
   layers:
   - Default
   - TransparentFX
