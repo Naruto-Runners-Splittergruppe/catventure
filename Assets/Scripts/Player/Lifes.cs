@@ -6,6 +6,10 @@ using UnityEngine.SceneManagement;
 public class Lifes : MonoBehaviour
 {
     public GameObject heart1, heart2;
+    public Color flashColor;
+    public Color regualColor;
+    public float flashDur;
+    public SpriteRenderer mySprite;
     
     private int health;
     public int Health
@@ -21,11 +25,14 @@ public class Lifes : MonoBehaviour
         set { invicible = value; }
     }
 
+
+
     // Start is called before the first frame update
     void Start()
     {
         health = 2;
         invicible = false;
+        
     }
 
     // Update is called once per frame
@@ -45,5 +52,17 @@ public class Lifes : MonoBehaviour
             heart2.gameObject.SetActive(false);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
-    }     
+        StartCoroutine(Flashing());
+    }  
+    
+    private IEnumerator Flashing()
+    {
+        while (invicible)
+        {
+            mySprite.color = flashColor;
+            yield return new WaitForSeconds(flashDur);
+            mySprite.color = regualColor;
+            yield return new WaitForSeconds(flashDur);
+        }
+    }
 }

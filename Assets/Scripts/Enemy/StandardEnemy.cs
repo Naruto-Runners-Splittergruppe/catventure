@@ -16,7 +16,7 @@ public class StandardEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     private void OnTriggerEnter2D(Collider2D colider)
@@ -27,7 +27,7 @@ public class StandardEnemy : MonoBehaviour
             //PolygonCollider2D pc2d = player.GetComponent<PolygonCollider2D>();
             lifes.Invicible = true;
             lifes.Health--;            
-            StartCoroutine("WaitSeconds", 10);           
+            StartCoroutine("WaitSeconds", 3);           
         }
     } 
     
