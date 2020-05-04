@@ -495,6 +495,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69a45083e69a4a443a89b4662d43c7a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!212 &743787907 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3714448213325722344, guid: 964b7ff2ce932d14da8ba4be9983246d,
+    type: 3}
+  m_PrefabInstance: {fileID: 3714448213232996845}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &743787909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -509,6 +515,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heart1: {fileID: 1077093252}
   heart2: {fileID: 1907518333}
+  flashColor: {r: 1, g: 1, b: 1, a: 0.40392157}
+  regualColor: {r: 1, g: 1, b: 1, a: 1}
+  flashDur: 0.07
+  mySprite: {fileID: 743787907}
   invicible: 0
 --- !u!1 &838657150
 GameObject:
