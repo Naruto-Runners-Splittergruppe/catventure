@@ -27,11 +27,11 @@ public class Movement : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         if (horizontal > 0)
         {
-            rb2d.velocity = new Vector2(speed, rb2d.velocity.y);
+            rb2d.velocity = new Vector2(horizontal * speed, rb2d.velocity.y);
             transform.localScale = new Vector3(1, 1, 1);
         } else if (horizontal < 0)
         {
-            rb2d.velocity = new Vector2(-speed, rb2d.velocity.y);
+            rb2d.velocity = new Vector2(horizontal * speed, rb2d.velocity.y);
             transform.localScale = new Vector3(-1, 1, 1);
         }
     }
