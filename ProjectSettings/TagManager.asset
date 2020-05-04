@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ground
   - DialogueBox
+  - Enemy
+  - GM
   layers:
   - Default
   - TransparentFX
