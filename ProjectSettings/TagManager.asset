@@ -19,7 +19,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - RigidBodyObject
   - 
   - 
   - 
@@ -46,4 +46,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: RigidBodyObject
+    uniqueID: 3307371487
     locked: 0
