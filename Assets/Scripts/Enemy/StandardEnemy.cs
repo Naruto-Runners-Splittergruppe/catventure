@@ -6,6 +6,9 @@ public class StandardEnemy : MonoBehaviour
 {
     private Lifes lifes;
     private GameObject player;
+
+    public int health;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,5 +38,10 @@ public class StandardEnemy : MonoBehaviour
     {
         yield return new WaitForSeconds(i);
         lifes.Invicible = false;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
     }
 }

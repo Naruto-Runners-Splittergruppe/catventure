@@ -10,6 +10,7 @@ TagManager:
   - VariableEventSystem
   - Enemy
   - GM
+  - turn
   layers:
   - Default
   - TransparentFX
