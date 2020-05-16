@@ -9,17 +9,23 @@ public class Movement : MonoBehaviour
     private bool touchingGround;
     private Rigidbody2D rb2d;
 
+    public bool MovementLocked { get; set; }
+
     // Start is called before the first frame update
     void Start()
     {
         rb2d = gameObject.GetComponent<Rigidbody2D>();
+        MovementLocked = false;
     }
 
 
     void Update()
     {
-        HorizontalMovement();
-        VerticalMovement();
+        if (!MovementLocked)
+        {
+            HorizontalMovement();
+            VerticalMovement();
+        }
     }
 
     void HorizontalMovement()

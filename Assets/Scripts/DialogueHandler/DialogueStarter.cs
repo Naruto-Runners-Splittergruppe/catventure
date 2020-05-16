@@ -7,6 +7,7 @@ public class DialogueStarter : MonoBehaviour
 {
     public Dialogue dialogue;
     public GameObject button;
+    private GameObject player;
     private bool playerEnteredTrigger = false;
     private bool dialogueStarted = false;
     private DialogueHandler dialogueHandler;
@@ -40,6 +41,7 @@ public class DialogueStarter : MonoBehaviour
         {
             playerEnteredTrigger = true;
             button.GetComponent<SpriteRenderer>().enabled = true;
+            player = collision.gameObject;
         }
     }
 
@@ -57,6 +59,7 @@ public class DialogueStarter : MonoBehaviour
         if(playerEnteredTrigger && !dialogueStarted && Input.GetButtonDown("Interact"))
         {
             dialogueStarted = true;
+            player.GetComponent<Movement>().MovementLocked = true;
             dialogueHandler.StartDialogue(dialogue);
         }
     }
@@ -64,5 +67,6 @@ public class DialogueStarter : MonoBehaviour
     public void SetDialogueEndedBool(object sender, EventArgs e)
     {
         dialogueStarted = false;
+        player.GetComponent<Movement>().MovementLocked = false;
     }
 }
