@@ -10,7 +10,9 @@ public class Lifes : MonoBehaviour
     public Color regualColor;
     public float flashDur;
     public SpriteRenderer mySprite;
-    
+    public static Lifes lifes;
+    public static GameObject player;
+
     private int health;
     public int Health
     {
@@ -30,6 +32,8 @@ public class Lifes : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+        lifes = player.GetComponent<Lifes>();
         health = 2;
         invicible = false;
         
@@ -65,4 +69,18 @@ public class Lifes : MonoBehaviour
             yield return new WaitForSeconds(flashDur);
         }
     }
+
+    public IEnumerator WaitSeconds(int i)
+    {
+        yield return new WaitForSeconds(i);
+        lifes.Invicible = false;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        StartCoroutine("WaitSeconds", 3);
+    }
+
+
 }

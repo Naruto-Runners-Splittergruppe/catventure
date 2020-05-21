@@ -8,6 +8,7 @@ public class Movement : MonoBehaviour
     public float jumpPower;
     private bool touchingGround;
     private Rigidbody2D rb2d;
+    private bool rotate;
 
     public bool MovementLocked { get; set; }
 
@@ -34,11 +35,20 @@ public class Movement : MonoBehaviour
         if (horizontal > 0)
         {
             rb2d.velocity = new Vector2(horizontal * speed, rb2d.velocity.y);
-            transform.localScale = new Vector3(1, 1, 1);
+            if (rotate)
+            {
+                transform.Rotate(0, 180, 0);
+                rotate = false;
+            }
+            
         } else if (horizontal < 0)
         {
             rb2d.velocity = new Vector2(horizontal * speed, rb2d.velocity.y);
-            transform.localScale = new Vector3(-1, 1, 1);
+            if (!rotate)
+            {
+                transform.Rotate(0, 180, 0);
+                rotate = true;
+            }
         }
     }
 

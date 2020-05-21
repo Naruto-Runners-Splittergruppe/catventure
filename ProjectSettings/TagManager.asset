@@ -11,6 +11,7 @@ TagManager:
   - Enemy
   - GM
   - turn
+  - Bullet
   layers:
   - Default
   - TransparentFX
