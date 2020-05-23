@@ -187,31 +187,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &495674114 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3714448213325722351, guid: 964b7ff2ce932d14da8ba4be9983246d,
-    type: 3}
-  m_PrefabInstance: {fileID: 3714448213232996845}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &495674120
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 495674114}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: cef549d530d231e46afc946156d55ba2, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,11 +495,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogueBox
       objectReference: {fileID: 0}
-    - target: {fileID: 3216224475254692925, guid: 0b0fab951f113754e88c4e0da5fac60b,
-        type: 3}
-      propertyPath: m_TagString
-      value: DialogueBox
-      objectReference: {fileID: 0}
     - target: {fileID: 3216224475254692926, guid: 0b0fab951f113754e88c4e0da5fac60b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -713,12 +683,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogueStarter
       objectReference: {fileID: 0}
-    - target: {fileID: 6341155007407566675, guid: c767bacc39ad0d244b7af8bb3c240231,
-        type: 3}
-      propertyPath: dialogue
-      value: 
-      objectReference: {fileID: 11400000, guid: bcf98d6450bcd3245a2178d4aea5e387,
-        type: 2}
     - target: {fileID: 6341155007407566677, guid: c767bacc39ad0d244b7af8bb3c240231,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class MultiChoiceDialogue
 {
+    public string dialogueOption;
     public enum AvatarPos { left, right };
     public string speakerName;
     public AvatarPos speakerPosition;

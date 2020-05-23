@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1066ce578442d544eb046c2e5ad0b9fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: {fileID: 0}
+  dialogue: {fileID: 11400000, guid: b1101308078d2eb47a54cfe0d371f56c, type: 2}
   button: {fileID: 4919042773542663761}
 --- !u!1001 &1919733485342809960
 PrefabInstance:

@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 3714448213325722345}
   - component: {fileID: 3714448213325722350}
   - component: {fileID: 495674121}
-  - component: {fileID: 495674120}
   - component: {fileID: 495674115}
+  - component: {fileID: 495674120}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -171,6 +171,20 @@ PolygonCollider2D:
       - {x: 0.14936288, y: -0.24745142}
       - {x: 0.12765136, y: 0.10507929}
       - {x: 0.10850875, y: 0.22561967}
+--- !u!114 &495674115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3714448213325722351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 577b496fcb1222e468bf5c3cc285f36e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  jumpPower: 250
 --- !u!95 &495674120
 Animator:
   serializedVersion: 3
@@ -190,17 +204,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &495674115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3714448213325722351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 577b496fcb1222e468bf5c3cc285f36e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
-  jumpPower: 250
