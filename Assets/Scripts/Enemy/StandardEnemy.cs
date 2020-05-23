@@ -4,44 +4,54 @@ using UnityEngine;
 
 public class StandardEnemy : MonoBehaviour
 {
-    private Lifes lifes;
-    private GameObject player;
 
-    public int health;
-
+    private int health;
+    public int Health
+    {
+        get { return health; }
+        set { health = value; }
+    }
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        lifes = player.GetComponent<Lifes>();
+        health = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(health <= 0)
+        {
+            this.gameObject.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D colider)
     {
-        if (colider.tag == "Player" && lifes.Invicible == false)
+        if (colider.tag == "Player")
         {
-            //Gameobject player = Gameobject.FindGameobjectWithTag("Player");
-            //PolygonCollider2D pc2d = player.GetComponent<PolygonCollider2D>();
-            lifes.Invicible = true;
-            lifes.Health--;            
-            StartCoroutine("WaitSeconds", 3);           
+           if(Lifes.lifes.Invicible == false && Vector2.Angle(Lifes.player.transform.position - this.transform.position, this.transform.up) >= 50)
+            {
+                Lifes.lifes.Invicible = true;
+                Lifes.lifes.TakeDamage(1);
+                
+            }
+            else if(Vector2.Angle(Lifes.player.transform.position - this.transform.position, this.transform.up) < 50)
+            {
+                colider.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 200);
+                health--;
+            }
         }
-    } 
-    
-    private IEnumerator WaitSeconds(int i)
-    {
-        yield return new WaitForSeconds(i);
-        lifes.Invicible = false;
+        if (colider.tag == "Bullet")
+            {
+            health--;
+            }
+        
     }
 
-    public void TakeDamage(int damage)
-    {
-        health -= damage;
-    }
+    
+
+    
+
+    
 }
