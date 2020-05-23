@@ -42,6 +42,7 @@ public class Lifes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //TODO Handle if heart1 || heart2 == null
         if(health == 2)
         {
             heart1.gameObject.SetActive(true);
