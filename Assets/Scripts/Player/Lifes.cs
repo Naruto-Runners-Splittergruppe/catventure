@@ -10,7 +10,7 @@ public class Lifes : MonoBehaviour
     public Color regualColor;
     public float flashDur;
     public SpriteRenderer mySprite;
-    
+
     private int health;
     public int Health
     {
@@ -32,29 +32,31 @@ public class Lifes : MonoBehaviour
     {
         health = 2;
         invicible = false;
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(health == 2)
+        if (health == 2)
         {
             heart1.gameObject.SetActive(true);
             heart2.gameObject.SetActive(true);
-        } else if(health == 1)
+        }
+        else if (health == 1)
         {
             heart1.gameObject.SetActive(true);
             heart2.gameObject.SetActive(false);
-        } else if(health == 0)
+        }
+        else if (health == 0)
         {
             heart1.gameObject.SetActive(false);
             heart2.gameObject.SetActive(false);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         StartCoroutine(Flashing());
-    }  
-    
+    }
+
     private IEnumerator Flashing()
     {
         while (invicible)

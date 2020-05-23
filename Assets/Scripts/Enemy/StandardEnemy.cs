@@ -40,8 +40,10 @@ public class StandardEnemy : MonoBehaviour
         lifes.Invicible = false;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage()
     {
-        health -= damage;
+        Destroy(gameObject);
+        GetComponent<Collider2D>().enabled = false; // disable BoxCollider
+        this.enabled = false;                       // disable enemy script
     }
 }
