@@ -21,7 +21,7 @@ public class Lifes : MonoBehaviour
         set { health = value; }
     }
 
-    public bool invicible;
+    private bool invicible;
     public bool Invicible
     {
         get { return invicible; }
@@ -37,15 +37,11 @@ public class Lifes : MonoBehaviour
         lifes = player.GetComponent<Lifes>();
         health = 2;
         invicible = false;
-
     }
 
     // Update is called once per frame
     void Update()
-    {
-
-        if (health == 2)
-
+    {        
         //TODO Handle if heart1 || heart2 == null
         if(health == 2)
         {
@@ -79,6 +75,7 @@ public class Lifes : MonoBehaviour
 
     public IEnumerator WaitSeconds(int i)
     {
+        lifes.Invicible = true;
         yield return new WaitForSeconds(i);
         lifes.Invicible = false;
     }

@@ -575,11 +575,10 @@ GameObject:
   m_Component:
   - component: {fileID: 912093958}
   - component: {fileID: 912093957}
-  - component: {fileID: 912093959}
   - component: {fileID: 912093960}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: deponia (1)
-  m_TagString: Enemy
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -648,19 +647,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &912093959
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 912093955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1ba49acc8a054c4d8151a954ec253eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 0
 --- !u!61 &912093960
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -671,7 +657,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -722,7 +708,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.5
   MoveLeft: 0
-  enemyShouldFollow: 1
+  enemyShouldFollow: 0
 --- !u!60 &1034140885
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -772,6 +758,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1ba49acc8a054c4d8151a954ec253eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySprite: {fileID: 1034140887}
+  flashColor: {r: 0, g: 0, b: 0, a: 0}
+  regualColor: {r: 0, g: 0, b: 0, a: 0}
+  flashDur: 0
   health: 0
 --- !u!212 &1034140887
 SpriteRenderer:
@@ -971,7 +961,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1307558317}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a9d74d01d75e7a4194a6d0b345bfe9d, type: 3}
   m_Name: 
@@ -1028,7 +1018,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1ba49acc8a054c4d8151a954ec253eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  mySprite: {fileID: 1307558322}
+  flashColor: {r: 1, g: 1, b: 1, a: 0.72156864}
+  regualColor: {r: 1, g: 1, b: 1, a: 1}
+  flashDur: 0.07
+  health: 3
 --- !u!212 &1307558322
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1337,7 +1331,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2018417006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.2938, y: -0.3189, z: 10}
+  m_LocalPosition: {x: 0.11, y: -0.347, z: 10}
   m_LocalScale: {x: 0.7622481, y: 0.6577588, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1410,6 +1404,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6980959364302536753, guid: 5ba0bb121bd45da4896ed7226307be00,
+        type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 7445524336346116399, guid: fe050f9a3fbdc5c4384439af170ae3ee,
+        type: 3}
     - target: {fileID: 6980959364302536754, guid: 5ba0bb121bd45da4896ed7226307be00,
         type: 3}
       propertyPath: heart1
