@@ -4,54 +4,93 @@ using UnityEngine;
 
 public class StandardEnemy : MonoBehaviour
 {
+    private Lifes lifes;
+    private GameObject player;
+    public SpriteRenderer mySprite;
+    public Color flashColor;
+    public Color regualColor;
+    public float flashDur;
+    private bool hit;
 
-    private int health;
-    public int Health
+    public bool Hit
     {
-        get { return health; }
-        set { health = value; }
+        get { return hit; }
+        set { hit = value; }
     }
+
+    public int health;
+
     // Start is called before the first frame update
     void Start()
     {
-        health = 1;
+        player = GameObject.FindGameObjectWithTag("Player");
+        lifes = player.GetComponent<Lifes>();
+        flashDur = 0.07f;
+        health = 3;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(health <= 0)
-        {
-            this.gameObject.SetActive(false);
-        }
+        StartCoroutine(Flashing());
     }
 
     private void OnTriggerEnter2D(Collider2D colider)
     {
-        if (colider.tag == "Player")
+        if(colider.tag == "Player")
         {
-           if(Lifes.lifes.Invicible == false && Vector2.Angle(Lifes.player.transform.position - this.transform.position, this.transform.up) >= 50)
+            if (Lifes.lifes.Invicible == false && Vector2.Angle(Lifes.player.transform.position - this.transform.position, this.transform.up) >= 50)
             {
                 Lifes.lifes.Invicible = true;
                 Lifes.lifes.TakeDamage(1);
-                
+
             }
-            else if(Vector2.Angle(Lifes.player.transform.position - this.transform.position, this.transform.up) < 50)
+            else if (Vector2.Angle(Lifes.player.transform.position - this.transform.position, this.transform.up) < 50)
             {
                 colider.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 200);
-                health--;
+                TakeDamage(1);
             }
+        }        
+        if(colider.tag == "Bullet")
+        {
+            TakeDamage(1);
         }
-        if (colider.tag == "Bullet")
-            {
-            health--;
-            }
+    }   
+
+    public IEnumerator WaitSeconds(float i)
+    {
+        hit = true;
+        gameObject.GetComponent<EnemyMovement>().enabled = false;
+        gameObject.GetComponent<FollowPlayer>().enabled = false;
+        gameObject.GetComponent<PolygonCollider2D>().enabled = false;
+        yield return new WaitForSeconds(i);
+        gameObject.GetComponent<EnemyMovement>().enabled = true;
+        gameObject.GetComponent<FollowPlayer>().enabled = true;
+        gameObject.GetComponent<PolygonCollider2D>().enabled = true;
+        hit = false;
+        if (health < 1)
+        {
+            this.gameObject.SetActive(false);
+        }
         
     }
 
-    
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        StartCoroutine("WaitSeconds", .5f);
+        
+    }
 
-    
 
-    
+    private IEnumerator Flashing()
+    {
+        while (hit)
+        {
+            mySprite.color = flashColor;
+            yield return new WaitForSeconds(flashDur);
+            mySprite.color = regualColor;
+            yield return new WaitForSeconds(flashDur);
+        }
+    }
 }

@@ -14,7 +14,15 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         rb.velocity = transform.right * speed / 2 + transform.up * speed*3/4;
+        StartCoroutine(WaitSeconds(3));
     }
+
+    public IEnumerator WaitSeconds(int i)
+    {
+        yield return new WaitForSeconds(i);
+        this.gameObject.SetActive(false);
+    }
+
     private void OnTriggerEnter2D(Collider2D colider)
     {
         if (colider.tag == "Enemy" || colider.tag == "Ground")

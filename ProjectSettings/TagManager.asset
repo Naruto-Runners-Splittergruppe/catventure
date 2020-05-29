@@ -12,6 +12,7 @@ TagManager:
   - GM
   - turn
   - Bullet
+  - Enemy Bullet
   layers:
   - Default
   - TransparentFX
@@ -22,8 +23,8 @@ TagManager:
   - 
   - 
   - RigidBodyObject
-  - 
-  - 
+  - Enemy
+  - Ground
   - 
   - 
   - 
