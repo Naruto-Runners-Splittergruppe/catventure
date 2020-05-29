@@ -10,6 +10,7 @@ public class Lifes : MonoBehaviour
     public Color regualColor;
     public float flashDur;
     public SpriteRenderer mySprite;
+
     public static Lifes lifes;
     public static GameObject player;
 
@@ -36,30 +37,35 @@ public class Lifes : MonoBehaviour
         lifes = player.GetComponent<Lifes>();
         health = 2;
         invicible = false;
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if (health == 2)
+
         //TODO Handle if heart1 || heart2 == null
         if(health == 2)
         {
             heart1.gameObject.SetActive(true);
             heart2.gameObject.SetActive(true);
-        } else if(health == 1)
+        }
+        else if (health == 1)
         {
             heart1.gameObject.SetActive(true);
             heart2.gameObject.SetActive(false);
-        } else if(health == 0)
+        }
+        else if (health == 0)
         {
             heart1.gameObject.SetActive(false);
             heart2.gameObject.SetActive(false);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         StartCoroutine(Flashing());
-    }  
-    
+    }
+
     private IEnumerator Flashing()
     {
         while (invicible)
