@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
+using System.Linq;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
@@ -23,18 +24,31 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         ListOfSpawnedObjects = new List<GameObject>();
+
         if (minSpawnPosition == null)
         {
             minSpawnPosition = new Vector2(0, 0);
         }
+
         if(maxSpawnPosition == null)
         {
             maxSpawnPosition = minSpawnPosition;
         }
+
         if (maxSpawnInterval == 0 || maxSpawnInterval < minSpawnInterval)
         {
             maxSpawnInterval = minSpawnInterval;
         }
+
+        if(spawnFixedAmount <= 0)
+        {
+            spawnFixedAmount = -1;
+        }
+        else
+        {
+            spawnNotMoreThan = spawnFixedAmount;
+        }
+
         if(objectToSpawn == null)
         {
             Debug.LogError("No spawn object set, reverting to default");
@@ -48,14 +62,35 @@ public class Spawner : MonoBehaviour
 
     private IEnumerator Spawn()
     {
-        while(!stopSpawning)
+        int itemsSpawned = -2;
+
+        if(spawnFixedAmount > 0)
+        {
+            itemsSpawned = 0;
+        }
+
+        while(!stopSpawning && itemsSpawned < spawnFixedAmount)
         {
             float spawnPositionX = Random.Range(minSpawnPosition.x, maxSpawnPosition.x);
             float spawnPositionY = Random.Range(minSpawnPosition.y, maxSpawnPosition.y);
 
-            if (spawnNotMoreThan <= 0 || spawnNotMoreThan <= ListOfSpawnedObjects.Count)
+            ListOfSpawnedObjects.RemoveAll(x => x == null);
+
+            if (spawnNotMoreThan <= 0 || spawnNotMoreThan > ListOfSpawnedObjects.Count)
             {
-                ListOfSpawnedObjects.Add(Instantiate(objectToSpawn, new Vector2(spawnPositionX, spawnPositionY), objectToSpawn.transform.rotation, null));
+                GameObject newObject = Instantiate(objectToSpawn, new Vector2(spawnPositionX, spawnPositionY), objectToSpawn.transform.rotation, transform);
+
+                if (!newObject.activeSelf)
+                {
+                    newObject.SetActive(true);
+                }
+
+                ListOfSpawnedObjects.Add(newObject);
+
+                if (spawnFixedAmount > 0)
+                {
+                    itemsSpawned++;
+                }
             }
 
             float spawnAfterSeconds = Random.Range(minSpawnInterval,maxSpawnInterval);

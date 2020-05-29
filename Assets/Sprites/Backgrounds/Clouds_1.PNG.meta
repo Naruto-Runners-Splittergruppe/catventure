@@ -1,7 +1,61 @@
 fileFormatVersion: 2
 guid: 5299296fa496896409ff5d42e26a0fae
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 5524942091601748378
+    second: Clouds_1_0
+  - first:
+      213: 3268937484871030074
+    second: Clouds_1_1
+  - first:
+      213: -7208139262499737062
+    second: Clouds_1_2
+  - first:
+      213: 3040085973672884532
+    second: Clouds_1_3
+  - first:
+      213: 2928285575398215997
+    second: Clouds_1_4
+  - first:
+      213: 7090477269537505238
+    second: Clouds_1_5
+  - first:
+      213: -930855950735633157
+    second: Clouds_1_6
+  - first:
+      213: -7520094614223449081
+    second: Clouds_1_7
+  - first:
+      213: -6024992042095358082
+    second: Clouds_1_8
+  - first:
+      213: 8114033640139913127
+    second: Clouds_1_0
+  - first:
+      213: -800756758255630097
+    second: Clouds_1_1
+  - first:
+      213: 5178053599937899182
+    second: Clouds_1_2
+  - first:
+      213: -5669195196047843329
+    second: Clouds_1_3
+  - first:
+      213: 119398994759879466
+    second: Clouds_1_4
+  - first:
+      213: -6200621988823641409
+    second: Clouds_1_5
+  - first:
+      213: -5124950530155089018
+    second: Clouds_1_6
+  - first:
+      213: -3485581420839229985
+    second: Clouds_1_7
+  - first:
+      213: -4658247744085996728
+    second: Clouds_1_8
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -31,7 +85,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -40,13 +94,13 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 133}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -71,9 +125,66 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Clouds_1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 10
+        width: 142
+        height: 55
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a7fb101b96da9070800000000000000
+      internalID: 8114033640139913127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
