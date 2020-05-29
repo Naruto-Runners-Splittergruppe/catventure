@@ -1,26 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class FollowPlayer : MonoBehaviour {
 
-    public Transform player;
-    public float walkingDistance = 10.0f; // Distance it will follow player
-    public float smoothTime = 10.0f; // Time it takes to get to player
-    
-    private Vector3 smoothVelocity = Vector3.zero; // stores velocity of enemy
-    
-    void Update() {
-        //Look at the player
-        Quaternion rotation = Quaternion.LookRotation(player.transform.position - transform.position, transform.TransformDirection(Vector3.up));
-        transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
-        //Calculate distance between player
-        float distance = Vector3.Distance(transform.position, player.position);
+    public float speed = 1f;
+    public float minDistance = 0.5f;
+    public float maxDistance = 3f;
+    private Transform target;
 
-        if (distance < walkingDistance) {
-            //Move the enemy towards the player with smoothdamp
-            transform.position = Vector3.SmoothDamp(transform.position, player.position, ref smoothVelocity, smoothTime);
+    public float DistanceAboveHead = 1f;
+    private Vector2 followAboveHead;
+
+    void Start() {
+
+        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+    }
+
+    void Update() {
+
+        followAboveHead = new Vector2(target.position.x, target.position.y + DistanceAboveHead);
+
+        if (Vector2.Distance(transform.position, followAboveHead) > minDistance && // if you dont want directly above head
+            Vector2.Distance(transform.position, followAboveHead) < maxDistance) {
+            transform.position = Vector2.MoveTowards(transform.position, followAboveHead, speed * Time.deltaTime);
+            // todo get faster when flying up
         }
     }
 }

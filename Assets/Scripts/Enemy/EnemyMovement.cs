@@ -7,15 +7,16 @@ public class EnemyMovement : MonoBehaviour
 
     public float speed;
     public bool MoveLeft;
-    public bool enemyShouldFollow = false;
+    private float temp;
 
     private Transform target;
 
 
-    private void Start() {
-        
-        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+    void Start() {
+
+        temp = speed;
     }
+
 
     // Update is called once per frame
     void Update()
@@ -44,6 +45,17 @@ public class EnemyMovement : MonoBehaviour
             {
                 MoveLeft = true;
             }
+        }
+
+        if (trig.gameObject.CompareTag("Player")) {
+            speed = 0;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D trig) {
+        
+        if (trig.gameObject.CompareTag("Player")) {
+            speed = temp;
         }
     }
 }
