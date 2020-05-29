@@ -7,6 +7,15 @@ public class EnemyMovement : MonoBehaviour
 
     public float speed;
     public bool MoveLeft;
+    public bool enemyShouldFollow = false;
+
+    private Transform target;
+
+
+    private void Start() {
+        
+        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+    }
 
     // Update is called once per frame
     void Update()
