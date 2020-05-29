@@ -37,12 +37,20 @@ public class StandardEnemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D colider)
     {
-        if (colider.tag == "Player" && lifes.Invicible == false)
+        if(colider.tag == "Player")
         {
-            //Gameobject player = Gameobject.FindGameobjectWithTag("Player");
-            //PolygonCollider2D pc2d = player.GetComponent<PolygonCollider2D>();
-            lifes.TakeDamage(1);          
-        }
+            if (Lifes.lifes.Invicible == false && Vector2.Angle(Lifes.player.transform.position - this.transform.position, this.transform.up) >= 50)
+            {
+                Lifes.lifes.Invicible = true;
+                Lifes.lifes.TakeDamage(1);
+
+            }
+            else if (Vector2.Angle(Lifes.player.transform.position - this.transform.position, this.transform.up) < 50)
+            {
+                colider.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 200);
+                TakeDamage(1);
+            }
+        }        
         if(colider.tag == "Bullet")
         {
             TakeDamage(1);
