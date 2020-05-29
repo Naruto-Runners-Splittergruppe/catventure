@@ -30,7 +30,7 @@ public class PlayerAttack : MonoBehaviour
         // Damage enemy
         foreach (Collider2D enemy in hitEnemies)
         {
-            enemy.GetComponent<StandardEnemy>().TakeDamage();
+            enemy.GetComponent<StandardEnemy>().TakeDamage(1);
         }
     }
 
