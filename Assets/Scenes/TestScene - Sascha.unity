@@ -270,6 +270,57 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &608821278
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 608821280}
+  - component: {fileID: 608821279}
+  m_Layer: 0
+  m_Name: Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &608821279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608821278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 643d8cac28688b24dbc5529cac3a6951, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minSpawnPosition: {x: 0, y: 0}
+  maxSpawnPosition: {x: 0, y: 0}
+  minSpawnInterval: 1
+  maxSpawnInterval: 0
+  objectToSpawn: {fileID: 6838628314130786617, guid: f88f1131167a6eb4ca5825f90c25b106,
+    type: 3}
+  spawnFixedAmount: -1
+  spawnNotMoreThan: -1
+--- !u!4 &608821280
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608821278}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &634409136
 GameObject:
   m_ObjectHideFlags: 0
@@ -609,6 +660,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 743787901, guid: 964b7ff2ce932d14da8ba4be9983246d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 743787909, guid: 964b7ff2ce932d14da8ba4be9983246d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 743787910, guid: 964b7ff2ce932d14da8ba4be9983246d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3714448213325722347, guid: 964b7ff2ce932d14da8ba4be9983246d,
         type: 3}
       propertyPath: m_LocalPosition.x
