@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9090011820032994313}
   - component: {fileID: 6916366070851198590}
   - component: {fileID: 5396246772883417064}
+  - component: {fileID: -3626222621273280597}
   m_Layer: 0
   m_Name: Enemy_Garn
   m_TagString: Enemy Bullet
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 8679211265284448830}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.887, y: -1.887, z: 0}
-  m_LocalScale: {x: 0.24539931, y: 0.24539931, z: 0.24539931}
+  m_LocalScale: {x: 1.24, y: 0.91, z: 0.24539931}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -73,12 +74,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8eb74b584eb8622439a66ac11628314b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0d7a959c335bc9242ab649096870a1a0, type: 3}
   m_Color: {r: 0.9433962, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5, y: 5}
+  m_Size: {x: 0.5, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -129,9 +130,23 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0.37
+  m_GravityScale: 0.03
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &-3626222621273280597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8679211265284448830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c1e4e3dc4898c04d8276daffdeef627, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  rb: {fileID: 5396246772883417064}
