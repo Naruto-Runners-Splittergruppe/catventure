@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class TestMovement : MonoBehaviour {
 
+    // movement Variables
     public float movementSpeed = 1f;
     private Vector2 movement;
     private Rigidbody2D rb2d;
-    public float jumpVelocity = 1f;
-
+    
+    // groundCheck
     public LayerMask groundLayer;
 
+    // Jump Variables
+    public float jumpVelocity = 1f;
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
+
+    // RayCast length
+    public float rayCastLength = 0.25f;
 
     // Start is called before the first frame update
     void Start() {
@@ -45,7 +51,7 @@ public class TestMovement : MonoBehaviour {
     }
 
     bool IsGrounded() {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1f, groundLayer);
-        return hit.collider != null ? true : false;
+        return Physics2D.Raycast(transform.position, Vector2.down, rayCastLength, groundLayer);
+        
     }
 }
