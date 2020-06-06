@@ -6,7 +6,8 @@ public class BulletEnemy : MonoBehaviour
 {
     public float speed = 0.5f;
     public Rigidbody2D rb;
-    Lifes target;
+    GameObject target;
+    Lifes lifes;
     Vector2 moveDir;
 
 
@@ -15,7 +16,8 @@ public class BulletEnemy : MonoBehaviour
     void Start()
     {
         StartCoroutine(WaitSeconds(3));
-        target = GameObject.FindObjectOfType<Lifes>();
+        target = GameObject.FindGameObjectWithTag("Player");
+        lifes = target.GetComponent<Lifes>();
         moveDir = (target.transform.position - transform.position).normalized * speed;
         rb.velocity = new Vector2(moveDir.x, moveDir.y);
 
@@ -35,7 +37,7 @@ public class BulletEnemy : MonoBehaviour
         }
         if(colider.tag == "Player")
         {
-            target.TakeDamage(1);
+            lifes.TakeDamage(1);
             this.gameObject.SetActive(false);              
         }
     }
