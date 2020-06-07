@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Net.Http.Headers;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,12 +9,14 @@ public class NotificationHandler : MonoBehaviour
     public GameObject notificationUIGroup;
     public float moveUpToY = -197;
 
-    public NotificationElement notificationElementForDebugging;
+    public NotificationElement defaultNotificationElement;
 
     private Text notificationText;
     private Image portrait;
     private float defaultHiddenPositionY;
     private RectTransform rectTransform;
+    private VariableEventSystem variableEventSystem;
+    private string language;
 
     public NotificationElement NotificationElement { get; set; }
 
@@ -21,8 +24,10 @@ public class NotificationHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Only for debugging
-        NotificationElement = notificationElementForDebugging;
+        NotificationElement = defaultNotificationElement;
+
+        variableEventSystem = GameObject.FindGameObjectWithTag("VariableEventSystem").GetComponent<VariableEventSystem>();
+        language = variableEventSystem.FindEventInStrings("Language").EventVariable;
 
         notificationText = notificationUIGroup.GetComponentInChildren<Text>();
         portrait = notificationUIGroup.GetComponentInChildren<Image>();
@@ -30,7 +35,8 @@ public class NotificationHandler : MonoBehaviour
 
         defaultHiddenPositionY = rectTransform.anchoredPosition.y;
 
-        //PopUpNotification(NotificationElement);
+        //Only for Debugging:
+        PopUpNotification(NotificationElement);
     }
 
     public void PopUpNotification(NotificationElement ne)
@@ -41,13 +47,23 @@ public class NotificationHandler : MonoBehaviour
             notificationText.enabled = true;
             portrait.enabled = true;
 
-            //portrait.sprite = NotificationElement.speakerPic;
-            //notificationText.text = NotificationElement.dialogueTextEnglish
+            portrait.sprite = NotificationElement.speakerPic;
+
+            if (language == "german")
+            {
+                notificationText.text = NotificationElement.dialogueTextGerman;
+            }
+            else
+            {
+                notificationText.text = NotificationElement.dialogueTextEnglish;
+            }
+
             StartCoroutine("MoveNotifiactionUp");
         }
         else
         {
             Debug.LogError("The notification element is null or empty");
+            PopUpNotification(defaultNotificationElement);
         }
     }
 

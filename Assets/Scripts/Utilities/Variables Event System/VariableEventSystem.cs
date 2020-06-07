@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class VariableEventSystem : MonoBehaviour
@@ -9,8 +10,15 @@ public class VariableEventSystem : MonoBehaviour
     public List<Event<int>> IntEvents { get; set; }
     public List<Event<float>> FloatEvents { get; set; }
 
+    public List<Event<string>> StringEvents { get; set; }
+
     private void Start()
     {
+        BoolEvents = new List<Event<bool>>();
+        IntEvents = new List<Event<int>>();
+        FloatEvents = new List<Event<float>>();
+        StringEvents = new List<Event<string>>();
+
         DontDestroyOnLoad(gameObject);
     }
 
@@ -24,7 +32,7 @@ public class VariableEventSystem : MonoBehaviour
             }
         }
 
-        return null;
+        return new Event<bool>();
     }
 
     public Event<bool> FindEventInBools(string name)
@@ -37,7 +45,7 @@ public class VariableEventSystem : MonoBehaviour
             }
         }
 
-        return null;
+        return new Event<bool>();
     }
 
     public Event<int> FindEventInInts(Guid id)
@@ -49,7 +57,7 @@ public class VariableEventSystem : MonoBehaviour
                 return i;
             }
         }
-        return null;
+        return new Event<int>();
     }
 
     public Event<int> FindEventInInts(string name)
@@ -61,7 +69,7 @@ public class VariableEventSystem : MonoBehaviour
                 return i;
             }
         }
-        return null;
+        return new Event<int>();
     }
 
     public Event<float> FindEventInFloats(Guid id)
@@ -73,7 +81,7 @@ public class VariableEventSystem : MonoBehaviour
                 return f;
             }
         }
-        return null;
+        return new Event<float>();
     }
 
     public Event<float> FindEventInFloats(string name)
@@ -85,6 +93,16 @@ public class VariableEventSystem : MonoBehaviour
                 return f;
             }
         }
-        return null;
+        return new Event<float>();
+    }
+
+    public Event<string> FindEventInStrings(Guid name)
+    {
+        return StringEvents.Any(x => x.Id == name) ? StringEvents.FirstOrDefault(x => x.Id == name) : new Event<string>();
+    }
+
+    public Event<string> FindEventInStrings(string name)
+    {
+        return StringEvents.Any(x => x.Name == name) ? StringEvents.FirstOrDefault(x => x.Name == name) : new Event<string>();
     }
 }

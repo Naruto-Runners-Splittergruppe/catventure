@@ -27,12 +27,20 @@ public class Event<T>
 	{
 		get
 		{
-			eventVariableGet.Invoke(this, null);
+			if (eventVariableGet != null)
+			{
+				eventVariableGet.Invoke(this, null);
+			}
+
 			return eventVariable;
 		}
 		set
 		{
-			eventVariableSet.Invoke(this, null);
+			if (eventVariableSet != null)
+			{
+				eventVariableSet.Invoke(this, null);
+			}
+
 			eventVariable = value;
 		}
 	}
