@@ -6,14 +6,21 @@ public class BulletEnemy : MonoBehaviour
 {
     public float speed = 0.5f;
     public Rigidbody2D rb;
+    GameObject target;
+    Lifes lifes;
+    Vector2 moveDir;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
-        rb.velocity = transform.right * speed / 2 + transform.up * speed * 3 / 4;
         StartCoroutine(WaitSeconds(3));
+        target = GameObject.FindGameObjectWithTag("Player");
+        lifes = target.GetComponent<Lifes>();
+        moveDir = (target.transform.position - transform.position).normalized * speed;
+        rb.velocity = new Vector2(moveDir.x, moveDir.y);
+
     }
 
     public IEnumerator WaitSeconds(int i)
@@ -24,9 +31,14 @@ public class BulletEnemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D colider)
     {
-        if (colider.tag == "Player" || colider.tag == "Ground")
+        if (colider.tag == "Ground")
         {
             this.gameObject.SetActive(false);
+        }
+        if(colider.tag == "Player")
+        {
+            lifes.TakeDamage(1);
+            this.gameObject.SetActive(false);              
         }
     }
 }

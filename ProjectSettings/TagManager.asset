@@ -13,6 +13,7 @@ TagManager:
   - turn
   - Bullet
   - Enemy Bullet
+  - Water
   layers:
   - Default
   - TransparentFX

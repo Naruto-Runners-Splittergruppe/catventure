@@ -10,6 +10,7 @@ public class Lifes : MonoBehaviour
     public Color regualColor;
     public float flashDur;
     public SpriteRenderer mySprite;
+    Movement movement;
 
     public static Lifes lifes;
     public static GameObject player;
