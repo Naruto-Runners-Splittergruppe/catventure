@@ -11,6 +11,7 @@ public class PlayerPos : MonoBehaviour
     {
         gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
         transform.position = gm.lastCheckPointPos;
+        
     }
     // for testing (kills player)
     void Update()

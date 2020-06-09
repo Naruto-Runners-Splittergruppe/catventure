@@ -86,7 +86,7 @@ public class Movement : MonoBehaviour
                 transform.Rotate(0, 180, 0);
                 rotate = false;
             }
-            
+
         } else if (horizontal < 0)
         {
             rb2d.velocity = new Vector2(horizontal * speed, rb2d.velocity.y);
@@ -130,5 +130,13 @@ public class Movement : MonoBehaviour
             inWater = false;
             rb2d.velocity = normalGravity;
         }
+    }
+    public void resetToNormal()
+    {
+        speed = normalSpeed;
+        jumpPower = normalJumpPower;
+        Physics2D.gravity = normalGravity;
+        inWater = false;
+        breathInSec = 3;
     }
 }
