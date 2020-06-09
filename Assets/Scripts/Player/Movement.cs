@@ -107,18 +107,21 @@ public class Movement : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.CompareTag("Ground"))
-        {
-            touchingGround = true;
-        }
+    {        
         if (col.CompareTag("Water"))
         {
             inWater = true;
             rb2d.velocity = loweredGravity;
         }
     }
-   
+    private void OnTriggerStay2D(Collider2D col)
+    {
+        if (col.CompareTag("Ground"))
+        {
+            touchingGround = true;
+        }
+    }
+
     void OnTriggerExit2D(Collider2D col)
     {
         if (col.CompareTag("Ground"))
