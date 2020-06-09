@@ -196,6 +196,9 @@ MonoBehaviour:
   speed: 2
   jumpPower: 250
   lifes: {fileID: 0}
+  mySprite: {fileID: 6376884568512815201}
+  underWaterColor: {r: 0, g: 0, b: 0, a: 0}
+  regualColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!95 &7778666821635682689
 Animator:
   serializedVersion: 3

@@ -23,10 +23,7 @@ public class TestMovement : MonoBehaviour {
     public float timeToBreath = 3f;
     private float timeLeftUnderwater;
     // slowed movement
-    private float slowedJumpVelocity;
-    private float slowedMovement;
-    private float normalJumpVelocity;
-    private float normalMovement;
+    private bool justEntered = false;
     // Water colour
     public SpriteRenderer mySprite;
     public Color underWaterColor;
@@ -44,11 +41,6 @@ public class TestMovement : MonoBehaviour {
 
         waterResistance = new Vector2(0, -0.75f);
         timeLeftUnderwater = timeToBreath;
-
-        normalJumpVelocity = jumpVelocity;
-        normalMovement = movementSpeed;
-        slowedJumpVelocity = jumpVelocity / 2;
-        slowedMovement = movementSpeed / 2;
     }
 
     // Update is called once per frame
@@ -58,34 +50,44 @@ public class TestMovement : MonoBehaviour {
 
         // Water movement
         if (inWater) {
-            mySprite.color = underWaterColor;
-            jumpVelocity = slowedJumpVelocity;
-            movementSpeed = slowedMovement;
-            Physics2D.gravity = waterResistance;
+            // will only run once, when entering the Water not every Frame
+            if (!justEntered) {
+                mySprite.color = underWaterColor;
+                Physics2D.gravity = waterResistance;
+                movementSpeed /= 2;
+                jumpVelocity /= 2;
 
-            if (timeLeftUnderwater > 0) {
-                timeLeftUnderwater -= Time.deltaTime;
+                justEntered = true;
+            }
+
+            if (timeLeftUnderwater > 0) { // if Player still has breath left
+                timeLeftUnderwater -= Time.deltaTime; // breath gets reduced by elapsed Time.deltaTime
             }
             else {
-                timeLeftUnderwater = timeToBreath;
+                timeLeftUnderwater = timeToBreath; // Player got damaged, breath restored
                 lifes.TakeDamage(1);
             }
         }
         else if (!inWater) {
-            mySprite.color = regularColor;
-            jumpVelocity = normalJumpVelocity;
-            movementSpeed = normalMovement;
-            Physics2D.gravity = regularGravity;
-            timeLeftUnderwater = timeToBreath;
-        }
 
-        // prevents Player from Sliding down Slopes
-        if (movement.x == 0 && touchingGround && !Input.GetButtonDown("Jump")) {
-            rb2d.velocity = Vector2.zero;
-            Physics2D.gravity = Vector2.zero;
-        }
-        else {
-            Physics2D.gravity = regularGravity;
+            if (justEntered) {
+                mySprite.color = regularColor;
+                Physics2D.gravity = regularGravity;
+                movementSpeed *= 2;
+                jumpVelocity *= 2;
+                timeLeftUnderwater = timeToBreath; // Player out of Water, breath restored
+
+                justEntered = false;
+            }
+            
+            // prevents Player from Sliding down Slopes
+            if (movement.x == 0 && touchingGround && !Input.GetButtonDown("Jump")) {
+                rb2d.velocity = Vector2.zero;
+                Physics2D.gravity = Vector2.zero;
+            }
+            else {
+                Physics2D.gravity = regularGravity;
+            }
         }
         
         // to Jump
@@ -96,14 +98,12 @@ public class TestMovement : MonoBehaviour {
         // high- and low- Jump
         if (rb2d.velocity.y < 0) {
             rb2d.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
-            //Debug.Log("Jumped");
         }
         else if (rb2d.velocity.y > 0 && !Input.GetButton("Jump")) {
             rb2d.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
-            //Debug.Log("Released");
         }
     }
-
+    // runs every few frames, more efficient
     void FixedUpdate() {
 
         rb2d.position += movement * movementSpeed * Time.fixedDeltaTime;
@@ -118,6 +118,7 @@ public class TestMovement : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D col) {
         if (col.CompareTag("Water")) {
             inWater = true;
+            rb2d.velocity = rb2d.velocity * 0.8f;
         }
     }
 

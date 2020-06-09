@@ -35,16 +35,16 @@ public class Movement : MonoBehaviour
         MovementLocked = false;
         slowedSpeed = speed/2;
         normalSpeed = speed;
-<<<<<<< HEAD
+
 
         grav = Physics2D.gravity;
-=======
+
         normalJumpPower = jumpPower;
         loweredJumpPower = jumpPower / 2;
         normalGravity = Physics2D.gravity;
         loweredGravity = new Vector2(0, -0.75f);
         time = breathInSec;
->>>>>>> 05ec853046654e8f952f62fbf49a86c9ced3056b
+
     }
 
 

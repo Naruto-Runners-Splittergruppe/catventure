@@ -46,7 +46,7 @@ public class Lifes : MonoBehaviour
         //TODO Handle if heart1 || heart2 == null
         if(health == 2)
         {
-            heart1.gameObject.SetActive(true);
+            heart1.gameObject.SetActive(false);
             heart2.gameObject.SetActive(true);
         }
         else if (health == 1)
@@ -58,6 +58,7 @@ public class Lifes : MonoBehaviour
         {
             heart1.gameObject.SetActive(false);
             heart2.gameObject.SetActive(false);
+            player.GetComponent<Movement>().resetToNormal();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         StartCoroutine(Flashing());
