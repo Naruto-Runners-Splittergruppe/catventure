@@ -6,6 +6,8 @@ public class Movement : MonoBehaviour
 {
     public float speed;
     public float jumpPower;
+    float normalJumpPower;
+    float loweredJumpPower;
     private bool touchingGround;
     private Rigidbody2D rb2d;
     private bool rotate;
@@ -13,6 +15,14 @@ public class Movement : MonoBehaviour
     private float slowedSpeed;
     private float normalSpeed;
     public Lifes lifes;
+    Vector2 normalGravity;
+    Vector2 loweredGravity;
+    float breathInSec = 3;
+    float time;
+
+    public SpriteRenderer mySprite;
+    public Color underWaterColor;
+    public Color regualColor;
 
     Vector2 grav;
 
@@ -25,8 +35,16 @@ public class Movement : MonoBehaviour
         MovementLocked = false;
         slowedSpeed = speed/2;
         normalSpeed = speed;
+<<<<<<< HEAD
 
         grav = Physics2D.gravity;
+=======
+        normalJumpPower = jumpPower;
+        loweredJumpPower = jumpPower / 2;
+        normalGravity = Physics2D.gravity;
+        loweredGravity = new Vector2(0, -0.75f);
+        time = breathInSec;
+>>>>>>> 05ec853046654e8f952f62fbf49a86c9ced3056b
     }
 
 
@@ -37,14 +55,30 @@ public class Movement : MonoBehaviour
             HorizontalMovement();
             VerticalMovement();
         }
-        if (inWater && !lifes.Invicible)
+        if (inWater)
         {
+            mySprite.color = underWaterColor;
+            jumpPower = loweredJumpPower; 
             speed = slowedSpeed;
-            StartCoroutine(WaitSeconds(3));
+            Physics2D.gravity = loweredGravity;
+
+            if(time > 0)
+            {
+                time -= Time.deltaTime;
+            }
+            else
+            {
+                lifes.TakeDamage(1);
+                time = breathInSec;
+            }   
         }
         else
         {
+            jumpPower = normalJumpPower;
             speed = normalSpeed;
+            Physics2D.gravity = normalGravity;
+            time = breathInSec;
+            mySprite.color = regualColor;
         }
     }
 
@@ -68,7 +102,7 @@ public class Movement : MonoBehaviour
                 transform.Rotate(0, 180, 0);
                 rotate = false;
             }
-            
+
         } else if (horizontal < 0)
         {
             rb2d.velocity = new Vector2(horizontal * speed, rb2d.velocity.y);
@@ -89,26 +123,18 @@ public class Movement : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.CompareTag("Ground"))
-        {
-            touchingGround = true;
-        }
+    {        
         if (col.CompareTag("Water"))
         {
             inWater = true;
+            rb2d.velocity = loweredGravity;
         }
     }
-
-    void OnTriggerStay2D(Collider2D col)
+    private void OnTriggerStay2D(Collider2D col)
     {
         if (col.CompareTag("Ground"))
         {
             touchingGround = true;
-        }
-        if (col.CompareTag("Water"))
-        {
-            inWater = true;
         }
     }
 
@@ -121,15 +147,15 @@ public class Movement : MonoBehaviour
         if (col.CompareTag("Water"))
         {
             inWater = false;
+            rb2d.velocity = normalGravity;
         }
     }
-
-    public IEnumerator WaitSeconds(int i)
+    public void resetToNormal()
     {
-        yield return new WaitForSeconds(i);
-        if (inWater)
-        {
-            lifes.TakeDamage(1);
-        }
+        speed = normalSpeed;
+        jumpPower = normalJumpPower;
+        Physics2D.gravity = normalGravity;
+        inWater = false;
+        breathInSec = 3;
     }
 }
