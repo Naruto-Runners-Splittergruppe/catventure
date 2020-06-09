@@ -20,6 +20,10 @@ public class Movement : MonoBehaviour
     float breathInSec = 3;
     float time;
 
+    public SpriteRenderer mySprite;
+    public Color underWaterColor;
+    public Color regualColor;
+
     public bool MovementLocked { get; set; }
 
     // Start is called before the first frame update
@@ -46,6 +50,7 @@ public class Movement : MonoBehaviour
         }
         if (inWater)
         {
+            mySprite.color = underWaterColor;
             jumpPower = loweredJumpPower; 
             speed = slowedSpeed;
             Physics2D.gravity = loweredGravity;
@@ -66,6 +71,7 @@ public class Movement : MonoBehaviour
             speed = normalSpeed;
             Physics2D.gravity = normalGravity;
             time = breathInSec;
+            mySprite.color = regualColor;
         }
     }
 
