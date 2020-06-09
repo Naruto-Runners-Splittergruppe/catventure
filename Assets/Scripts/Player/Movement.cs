@@ -6,6 +6,8 @@ public class Movement : MonoBehaviour
 {
     public float speed;
     public float jumpPower;
+    float normalJumpPower;
+    float loweredJumpPower;
     private bool touchingGround;
     private Rigidbody2D rb2d;
     private bool rotate;
@@ -13,6 +15,10 @@ public class Movement : MonoBehaviour
     private float slowedSpeed;
     private float normalSpeed;
     public Lifes lifes;
+    Vector2 normalGravity;
+    Vector2 loweredGravity;
+    float breathInSec = 3;
+    float time;
 
     public bool MovementLocked { get; set; }
 
@@ -23,6 +29,11 @@ public class Movement : MonoBehaviour
         MovementLocked = false;
         slowedSpeed = speed/2;
         normalSpeed = speed;
+        normalJumpPower = jumpPower;
+        loweredJumpPower = jumpPower / 2;
+        normalGravity = Physics2D.gravity;
+        loweredGravity = new Vector2(0, -0.75f);
+        time = breathInSec;
     }
 
 
@@ -33,14 +44,28 @@ public class Movement : MonoBehaviour
             HorizontalMovement();
             VerticalMovement();
         }
-        if (inWater && !lifes.Invicible)
+        if (inWater)
         {
+            jumpPower = loweredJumpPower; 
             speed = slowedSpeed;
-            StartCoroutine(WaitSeconds(3));
+            Physics2D.gravity = loweredGravity;
+
+            if(time > 0)
+            {
+                time -= Time.deltaTime;
+            }
+            else
+            {
+                lifes.TakeDamage(1);
+                time = breathInSec;
+            }   
         }
         else
         {
+            jumpPower = normalJumpPower;
             speed = normalSpeed;
+            Physics2D.gravity = normalGravity;
+            time = breathInSec;
         }
     }
 
@@ -84,21 +109,10 @@ public class Movement : MonoBehaviour
         if (col.CompareTag("Water"))
         {
             inWater = true;
+            rb2d.velocity = loweredGravity;
         }
     }
-
-    void OnTriggerStay2D(Collider2D col)
-    {
-        if (col.CompareTag("Ground"))
-        {
-            touchingGround = true;
-        }
-        if (col.CompareTag("Water"))
-        {
-            inWater = true;
-        }
-    }
-
+   
     void OnTriggerExit2D(Collider2D col)
     {
         if (col.CompareTag("Ground"))
@@ -108,15 +122,7 @@ public class Movement : MonoBehaviour
         if (col.CompareTag("Water"))
         {
             inWater = false;
-        }
-    }
-
-    public IEnumerator WaitSeconds(int i)
-    {
-        yield return new WaitForSeconds(i);
-        if (inWater)
-        {
-            lifes.TakeDamage(1);
+            rb2d.velocity = normalGravity;
         }
     }
 }
