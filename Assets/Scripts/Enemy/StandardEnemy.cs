@@ -8,7 +8,7 @@ public class StandardEnemy : MonoBehaviour
     private GameObject player;
     public SpriteRenderer mySprite;
     public Color flashColor;
-    public Color regualColor;
+    public Color regularColor;
     public float flashDur;
     private bool hit;
 
@@ -89,7 +89,7 @@ public class StandardEnemy : MonoBehaviour
         {
             mySprite.color = flashColor;
             yield return new WaitForSeconds(flashDur);
-            mySprite.color = regualColor;
+            mySprite.color = regularColor;
             yield return new WaitForSeconds(flashDur);
         }
     }

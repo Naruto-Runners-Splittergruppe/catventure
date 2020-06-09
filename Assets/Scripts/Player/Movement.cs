@@ -14,6 +14,8 @@ public class Movement : MonoBehaviour
     private float normalSpeed;
     public Lifes lifes;
 
+    Vector2 grav;
+
     public bool MovementLocked { get; set; }
 
     // Start is called before the first frame update
@@ -23,6 +25,8 @@ public class Movement : MonoBehaviour
         MovementLocked = false;
         slowedSpeed = speed/2;
         normalSpeed = speed;
+
+        grav = Physics2D.gravity;
     }
 
 
@@ -47,6 +51,15 @@ public class Movement : MonoBehaviour
     void HorizontalMovement()
     {
         float horizontal = Input.GetAxis("Horizontal");
+
+        if (horizontal == 0 && touchingGround && !Input.GetButtonDown("Jump")) {
+            rb2d.velocity = Vector2.zero;
+            Physics2D.gravity = Vector2.zero;
+        }
+        else {
+            Physics2D.gravity = grav;
+        }
+
         if (horizontal > 0)
         {
             rb2d.velocity = new Vector2(horizontal * speed, rb2d.velocity.y);

@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 7778666821635682698}
   - component: {fileID: 7778666821635682689}
   - component: {fileID: 7778666821882224628}
-  - component: {fileID: 7778666821882224396}
   - component: {fileID: 7778666821882224399}
   - component: {fileID: 6376884569855019868}
   - component: {fileID: 6376884569855019869}
@@ -189,13 +188,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6376884568512815206}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 577b496fcb1222e468bf5c3cc285f36e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
   jumpPower: 250
+  lifes: {fileID: 0}
 --- !u!95 &7778666821635682689
 Animator:
   serializedVersion: 3
@@ -222,30 +222,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6376884568512815206}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69a45083e69a4a443a89b4662d43c7a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7778666821882224396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6376884568512815206}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66592556bfffbd344a8bbdb1d883ee6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  heart1: {fileID: 0}
-  heart2: {fileID: 0}
-  flashColor: {r: 1, g: 1, b: 1, a: 0.40392157}
-  regualColor: {r: 1, g: 1, b: 1, a: 1}
-  flashDur: 0.07
-  mySprite: {fileID: 6376884568512815201}
-  invicible: 0
 --- !u!114 &7778666821882224399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,18 +352,22 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6376884568512815206}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4cee2df18f0edb249b684e806b5f7419, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 3
-  jumpVelocity: 3
+  jumpVelocity: 200
   groundLayer:
     serializedVersion: 2
     m_Bits: 1024
   fallMultiplier: 2.5
-  lowJumpMultiplier: 2
+  lowJumpMultiplier: 5
+  timeToBreath: 3
+  mySprite: {fileID: 6376884568512815201}
+  underWaterColor: {r: 0.41037738, g: 0.6233931, b: 1, a: 1}
+  regularColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &6376884569805763589
 GameObject:
   m_ObjectHideFlags: 0

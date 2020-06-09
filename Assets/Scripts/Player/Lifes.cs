@@ -86,6 +86,4 @@ public class Lifes : MonoBehaviour
         health -= damage;
         StartCoroutine("WaitSeconds", 3);
     }
-
-
 }
