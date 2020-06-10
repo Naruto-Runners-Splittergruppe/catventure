@@ -368,6 +368,7 @@ MonoBehaviour:
   fallMultiplier: 2.5
   lowJumpMultiplier: 5
   timeToBreath: 3
+  waterResistance: 0.97
   mySprite: {fileID: 6376884568512815201}
   underWaterColor: {r: 0.41037738, g: 0.6233931, b: 1, a: 1}
   regularColor: {r: 1, g: 1, b: 1, a: 1}

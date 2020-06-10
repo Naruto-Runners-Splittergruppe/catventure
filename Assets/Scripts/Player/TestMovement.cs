@@ -19,11 +19,12 @@ public class TestMovement : MonoBehaviour {
 
     // Water behaviour
     private bool inWater = false;
-    private Vector2 waterResistance;
     public float timeToBreath = 3f;
     private float timeLeftUnderwater;
     // slowed movement
     private bool justEntered = false;
+    public float waterResistance = 0.92f;
+    private Vector2 gravityInWater;
     // Water colour
     public SpriteRenderer mySprite;
     public Color underWaterColor;
@@ -39,7 +40,7 @@ public class TestMovement : MonoBehaviour {
         rb2d = this.GetComponent<Rigidbody2D>();
         regularGravity = Physics2D.gravity;
 
-        waterResistance = new Vector2(0, -0.75f);
+        gravityInWater = new Vector2(0, -3);
         timeLeftUnderwater = timeToBreath;
     }
 
@@ -53,10 +54,8 @@ public class TestMovement : MonoBehaviour {
             // will only run once, when entering the Water not every Frame
             if (!justEntered) {
                 mySprite.color = underWaterColor;
-                Physics2D.gravity = waterResistance;
                 movementSpeed /= 2;
-                jumpVelocity /= 2;
-
+                Physics2D.gravity = gravityInWater;
                 justEntered = true;
             }
 
@@ -65,16 +64,18 @@ public class TestMovement : MonoBehaviour {
             }
             else {
                 timeLeftUnderwater = timeToBreath; // Player got damaged, breath restored
-                lifes.TakeDamage(1);
+                lifes.TakeDamage(1); // Player has drowned, takes 1 damage
             }
+
+            rb2d.velocity *= waterResistance; // reduces fallspeed by waterResistance * velocity every frame.
         }
         else if (!inWater) {
 
             if (justEntered) {
                 mySprite.color = regularColor;
-                Physics2D.gravity = regularGravity;
                 movementSpeed *= 2;
-                jumpVelocity *= 2;
+                Physics2D.gravity = regularGravity;
+
                 timeLeftUnderwater = timeToBreath; // Player out of Water, breath restored
 
                 justEntered = false;
@@ -103,7 +104,7 @@ public class TestMovement : MonoBehaviour {
             rb2d.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
     }
-    // runs every few frames, more efficient
+    // runs every few frames, more efficient, used 
     void FixedUpdate() {
 
         rb2d.position += movement * movementSpeed * Time.fixedDeltaTime;
@@ -118,7 +119,6 @@ public class TestMovement : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D col) {
         if (col.CompareTag("Water")) {
             inWater = true;
-            rb2d.velocity = rb2d.velocity * 0.8f;
         }
     }
 
