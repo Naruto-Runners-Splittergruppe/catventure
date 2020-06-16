@@ -19,7 +19,7 @@ public class TestMovement : MonoBehaviour {
 
     // Water behaviour
     private bool inWater = false;
-    public float timeToBreath = 3f;
+    public float timeToBreath = 0.5f;
     private float timeLeftUnderwater;
     // slowed movement
     private bool justEntered = false;
@@ -34,6 +34,9 @@ public class TestMovement : MonoBehaviour {
     bool touchingGround = false;
     Vector2 regularGravity;
 
+    // Collectibles
+    private int score;
+
     // Start is called before the first frame update
     void Start() {
 
@@ -42,6 +45,8 @@ public class TestMovement : MonoBehaviour {
 
         gravityInWater = new Vector2(0, -3);
         timeLeftUnderwater = timeToBreath;
+
+        int score = 0;
     }
 
     // Update is called once per frame
@@ -119,6 +124,11 @@ public class TestMovement : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D col) {
         if (col.CompareTag("Water")) {
             inWater = true;
+        }
+
+        if (col.tag == "Collectible") {
+            score++;
+            Destroy(col.gameObject);
         }
     }
 

@@ -196,7 +196,7 @@ MonoBehaviour:
   speed: 2
   jumpPower: 250
   lifes: {fileID: 0}
-  mySprite: {fileID: 6376884568512815201}
+  mySprite: {fileID: 0}
   underWaterColor: {r: 0, g: 0, b: 0, a: 0}
   regualColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!95 &7778666821635682689
@@ -367,11 +367,11 @@ MonoBehaviour:
     m_Bits: 1024
   fallMultiplier: 2.5
   lowJumpMultiplier: 5
-  timeToBreath: 3
-  waterResistance: 0.97
+  timeToBreath: 0.5
+  waterResistance: 0.92
   mySprite: {fileID: 6376884568512815201}
-  underWaterColor: {r: 0.41037738, g: 0.6233931, b: 1, a: 1}
-  regularColor: {r: 1, g: 1, b: 1, a: 1}
+  underWaterColor: {r: 0.33333334, g: 0.38240725, b: 0.5647059, a: 1}
+  regularColor: {r: 1, g: 1, b: 1, a: 0}
 --- !u!1 &6376884569805763589
 GameObject:
   m_ObjectHideFlags: 0
