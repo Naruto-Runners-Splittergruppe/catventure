@@ -27,7 +27,7 @@ TagManager:
   - RigidBodyObject
   - Enemy
   - Ground
-  - 
+  - Background
   - 
   - 
   - 
@@ -49,9 +49,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3307371487
+    locked: 0
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: RigidBodyObject
-    uniqueID: 3307371487
     locked: 0
