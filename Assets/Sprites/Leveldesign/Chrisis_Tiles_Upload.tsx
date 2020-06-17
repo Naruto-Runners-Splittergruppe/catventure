@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
 <tileset version="1.2" tiledversion="1.3.5" name="Chrisi2" tilewidth="349" tileheight="198" tilecount="48" columns="0">
-=======
-<tileset version="1.2" tiledversion="1.3.5" name="Chrisi2" tilewidth="349" tileheight="222" tilecount="60" columns="0">
->>>>>>> Trying_to_make_this_work
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0">
   <image width="349" height="198" source="Tiles/Bridge.PNG"/>
@@ -269,11 +265,7 @@
   <image width="56" height="118" source="Tiles/Platform_left.PNG"/>
   <objectgroup draworder="index" id="2">
    <object id="1" x="7" y="14.25">
-<<<<<<< HEAD
     <polygon points="0,0 -0.25,10.25 49.5,12.25 49,-0.25"/>
-=======
-    <polygon points="0,0 -0.25,10.25 51,12.5 51.25,-1.25"/>
->>>>>>> Trying_to_make_this_work
    </object>
   </objectgroup>
  </tile>
@@ -281,11 +273,7 @@
   <image width="56" height="118" source="Tiles/Platform_right.PNG"/>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0.5" y="14.5">
-<<<<<<< HEAD
     <polygon points="-1,-0.25 49.25,-0.25 47.5,11.75 -0.5,12"/>
-=======
-    <polygon points="-2,-0.75 49.25,-0.25 47.5,11.75 -1.25,12"/>
->>>>>>> Trying_to_make_this_work
    </object>
   </objectgroup>
  </tile>
@@ -307,63 +295,4 @@
  <tile id="99">
   <image width="80" height="80" source="Tiles/Textbox.PNG"/>
  </tile>
-<<<<<<< HEAD
-=======
- <tile id="100">
-  <image width="142" height="198" source="Tiles/Hell_background.PNG"/>
- </tile>
- <tile id="101">
-  <image width="50" height="143" source="Tiles/Hell_diagonal.PNG"/>
- </tile>
- <tile id="102">
-  <image width="50" height="143" source="Tiles/Hell_diagonal_2.PNG"/>
- </tile>
- <tile id="103">
-  <image width="346" height="222" source="Tiles/Hell_fence.PNG"/>
- </tile>
- <tile id="104">
-  <image width="50" height="118" source="Tiles/Hell_ground.PNG"/>
- </tile>
- <tile id="105">
-  <image width="68" height="143" source="Tiles/Hell_ground_left.PNG"/>
- </tile>
- <tile id="106">
-  <image width="68" height="143" source="Tiles/Hell_ground_right.PNG"/>
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="-0.25" y="35">
-    <polygon points="-1.5,-0.5 49.5,0.25 49.75,110 0.5,110"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="107">
-  <image width="68" height="143" source="Tiles/Hell_platform.PNG"/>
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="11" y="35.75">
-    <polygon points="-0.5,-2.25 0.5,28.25 48.75,29.25 51.5,-2.75"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="108">
-  <image width="68" height="143" source="Tiles/Hell_platform_left.PNG"/>
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="18.5" y="35.5">
-    <polygon points="-0.75,-1.5 -0.75,27 51.5,27.25 51.25,-2.75"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="109">
-  <image width="68" height="143" source="Tiles/Hell_platform_right.PNG"/>
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="35.25">
-    <polygon points="-1.25,-0.75 49.5,-0.25 49.25,27.5 -1.25,27.5"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="110">
-  <image width="346" height="222" source="Tiles/Hell_stone.PNG"/>
- </tile>
- <tile id="111">
-  <image width="346" height="222" source="Tiles/Hell_tree.PNG"/>
- </tile>
->>>>>>> Trying_to_make_this_work
 </tileset>
