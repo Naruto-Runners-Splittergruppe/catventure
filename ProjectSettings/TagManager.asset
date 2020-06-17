@@ -15,6 +15,7 @@ TagManager:
   - Enemy Bullet
   - Water
   - Collectible
+  - DeathPit
   layers:
   - Default
   - TransparentFX

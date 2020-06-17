@@ -9,9 +9,7 @@ public class TestMovement : MonoBehaviour {
     private Vector2 movement;
     private Rigidbody2D rb2d;
     public float jumpVelocity = 200f;
-    
-    // checks for Ground Layer
-    public LayerMask groundLayer;
+    private bool rotate = true;
 
     // fall amplifier
     public float fallMultiplier = 2.5f;
@@ -85,7 +83,7 @@ public class TestMovement : MonoBehaviour {
 
                 justEntered = false;
             }
-            
+
             // prevents Player from Sliding down Slopes
             if (movement.x == 0 && touchingGround && !Input.GetButtonDown("Jump")) {
                 rb2d.velocity = Vector2.zero;
@@ -95,7 +93,7 @@ public class TestMovement : MonoBehaviour {
                 Physics2D.gravity = regularGravity;
             }
         }
-        
+
         // to Jump
         if (Input.GetButtonDown("Jump") && touchingGround) {
             rb2d.AddForce(Vector2.up * jumpVelocity);
@@ -108,6 +106,22 @@ public class TestMovement : MonoBehaviour {
         else if (rb2d.velocity.y > 0 && !Input.GetButton("Jump")) {
             rb2d.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
+
+        // rotation
+        if (movement.x < 0 && rotate) {
+            transform.Rotate(0, 180, 0);
+            rotate = false;
+        }
+        else if (movement.x > 0 && !rotate) {
+            transform.Rotate(0, 180, 0);
+            rotate = true;
+        }
+
+        // prevents getting stuck on Slopes
+        if (rb2d.velocity.y < 0 && touchingGround) {
+            rb2d.velocity *= -1;
+        }
+
     }
     // runs every few frames, more efficient, used 
     void FixedUpdate() {
@@ -129,6 +143,10 @@ public class TestMovement : MonoBehaviour {
         if (col.tag == "Collectible") {
             score++;
             Destroy(col.gameObject);
+        }
+
+        if (col.tag == "DeathPit") {
+            lifes.TakeDamage(1);
         }
     }
 
