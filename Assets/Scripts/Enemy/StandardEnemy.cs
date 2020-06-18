@@ -26,7 +26,7 @@ public class StandardEnemy : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         lifes = player.GetComponent<Lifes>();
         flashDur = 0.07f;
-        health = 3;
+        health = 1;
     }
 
     // Update is called once per frame

@@ -148,7 +148,7 @@ public class TestMovement : MonoBehaviour {
         }
 
         if (col.tag == "DeathPit") {
-            lifes.TakeDamage(1);
+            lifes.TakeDamage(10);
         }
     }
 

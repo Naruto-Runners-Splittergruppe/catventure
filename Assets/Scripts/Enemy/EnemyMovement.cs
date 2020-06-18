@@ -45,7 +45,15 @@ public class EnemyMovement : MonoBehaviour
         if (trig.CompareTag("Ground")) {
             touchingGround = true;
         }
-        
+
+        if (trig.CompareTag("Player"))
+        {
+            Lifes player = trig.GetComponent<Lifes>();
+            player.TakeDamage(1);
+            speed = 0;
+            rb2d.velocity = Vector2.zero;
+            rb2d.mass = rb2d.mass * 10;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D trig)
@@ -60,11 +68,7 @@ public class EnemyMovement : MonoBehaviour
             {
                 MoveLeft = true;
             }
-        }
-
-        if (trig.CompareTag("Player")) {
-            speed = 0;
-        }
+        }       
     }
 
     void OnTriggerExit2D(Collider2D trig) {
