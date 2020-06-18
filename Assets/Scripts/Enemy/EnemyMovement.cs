@@ -9,12 +9,15 @@ public class EnemyMovement : MonoBehaviour
     public bool MoveLeft;
     private float temp;
 
-    private Transform target;
+    private bool touchingGround = false;
 
+    private Rigidbody2D rb2d;
 
     void Start() {
 
         temp = speed;
+
+        rb2d = this.GetComponent<Rigidbody2D>();
     }
 
 
@@ -31,11 +34,23 @@ public class EnemyMovement : MonoBehaviour
             transform.Translate(2 * Time.deltaTime * speed, 0, 0);
             transform.localScale = new Vector2(-2, 2);
         }
+
+       if (rb2d.velocity.y < 0 && touchingGround) {
+            rb2d.velocity *= -1;
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D trig) {
+
+        if (trig.CompareTag("Ground")) {
+            touchingGround = true;
+        }
+        
     }
 
     void OnTriggerEnter2D(Collider2D trig)
     {
-        if (trig.gameObject.CompareTag("turn"))
+        if (trig.CompareTag("turn"))
         {
             if (MoveLeft)
             {
@@ -47,15 +62,19 @@ public class EnemyMovement : MonoBehaviour
             }
         }
 
-        if (trig.gameObject.CompareTag("Player")) {
+        if (trig.CompareTag("Player")) {
             speed = 0;
         }
     }
 
     void OnTriggerExit2D(Collider2D trig) {
         
-        if (trig.gameObject.CompareTag("Player")) {
+        if (trig.CompareTag("Player")) {
             speed = temp;
+        }
+
+        if (trig.CompareTag("Ground")) {
+            touchingGround = false;
         }
     }
 }

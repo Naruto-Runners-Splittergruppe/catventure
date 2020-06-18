@@ -32,6 +32,8 @@ public class TestMovement : MonoBehaviour {
     bool touchingGround = false;
     Vector2 regularGravity;
 
+    public CircleCollider2D cc2d;
+
     // Collectibles
     private int score;
 
@@ -130,7 +132,7 @@ public class TestMovement : MonoBehaviour {
     }
 
     void OnTriggerStay2D(Collider2D col) {
-        if (col.CompareTag("Ground")) {
+        if (col.CompareTag("Ground") && cc2d.IsTouching(col)) {
             touchingGround = true;
         }
     }
@@ -151,7 +153,7 @@ public class TestMovement : MonoBehaviour {
     }
 
     void OnTriggerExit2D(Collider2D col) {
-        if (col.CompareTag("Ground")) {
+        if (col.CompareTag("Ground") && !cc2d.IsTouching(col)) {
             touchingGround = false;
         }
         if (col.CompareTag("Water")) {
