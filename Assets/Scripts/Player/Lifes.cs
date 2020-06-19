@@ -58,7 +58,7 @@ public class Lifes : MonoBehaviour
         {
             heart1.gameObject.SetActive(false);
             heart2.gameObject.SetActive(false);
-            player.GetComponent<Movement>().resetToNormal();
+            player.GetComponent<TestMovement>().resetToNormal();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         StartCoroutine(Flashing());

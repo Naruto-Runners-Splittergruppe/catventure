@@ -12,11 +12,14 @@ public class EnemyMovement : MonoBehaviour
     private bool touchingGround = false;
 
     private Rigidbody2D rb2d;
+    public static Lifes lifes;
+    public static GameObject player;
 
     void Start() {
 
         temp = speed;
-
+        player = GameObject.FindGameObjectWithTag("Player");
+        lifes = player.GetComponent<Lifes>();
         rb2d = this.GetComponent<Rigidbody2D>();
     }
 
@@ -46,10 +49,9 @@ public class EnemyMovement : MonoBehaviour
             touchingGround = true;
         }
 
-        if (trig.CompareTag("Player"))
+        if (trig.CompareTag("Player") && !lifes.Invicible)
         {
-            Lifes player = trig.GetComponent<Lifes>();
-            player.TakeDamage(1);
+            lifes.TakeDamage(1);
             speed = 0;
             rb2d.velocity = Vector2.zero;
             rb2d.mass = rb2d.mass * 10;

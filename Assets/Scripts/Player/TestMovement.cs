@@ -158,4 +158,10 @@ public class TestMovement : MonoBehaviour {
             inWater = false;
         }
     }
+
+    public void resetToNormal()
+    {
+        Physics2D.gravity = regularGravity;
+        inWater = false;
+    }
 }
