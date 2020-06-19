@@ -35,7 +35,7 @@ public class TestMovement : MonoBehaviour {
     public CircleCollider2D cc2d;
 
     // Collectibles
-    private int score;
+    private int score = 0;
 
     // Start is called before the first frame update
     void Start() {
@@ -44,9 +44,7 @@ public class TestMovement : MonoBehaviour {
         regularGravity = Physics2D.gravity;
 
         gravityInWater = new Vector2(0, -3);
-        timeLeftUnderwater = timeToBreath;
-
-        int score = 0;
+        timeLeftUnderwater = timeToBreath;        
     }
 
     // Update is called once per frame

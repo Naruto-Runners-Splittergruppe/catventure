@@ -26,7 +26,6 @@ public class StandardEnemy : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         lifes = player.GetComponent<Lifes>();
         flashDur = 0.07f;
-        health = 1;
     }
 
     // Update is called once per frame
@@ -47,7 +46,7 @@ public class StandardEnemy : MonoBehaviour
             }
             else if (Vector2.Angle(Lifes.player.transform.position - this.transform.position, this.transform.up) < 50)
             {
-                colider.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 200);
+                colider.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 250);
                 TakeDamage(1);
             }
         }        
@@ -59,20 +58,19 @@ public class StandardEnemy : MonoBehaviour
 
     public IEnumerator WaitSeconds(float i)
     {
-        hit = true;
+        hit = true;        
         gameObject.GetComponent<EnemyMovement>().enabled = false;
-        gameObject.GetComponent<FollowPlayer>().enabled = false;
-        gameObject.GetComponent<PolygonCollider2D>().enabled = false;
+        gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
         yield return new WaitForSeconds(i);
-        gameObject.GetComponent<EnemyMovement>().enabled = true;
-        gameObject.GetComponent<FollowPlayer>().enabled = true;
-        gameObject.GetComponent<PolygonCollider2D>().enabled = true;
-        hit = false;
         if (health < 1)
         {
             this.gameObject.SetActive(false);
         }
-        
+        gameObject.GetComponent<EnemyMovement>().enabled = true;
+        gameObject.GetComponent<Rigidbody2D>().gravityScale = 1;
+        gameObject.GetComponent<BoxCollider2D>().enabled = true;
+        hit = false;       
     }
 
     public void TakeDamage(int damage)
