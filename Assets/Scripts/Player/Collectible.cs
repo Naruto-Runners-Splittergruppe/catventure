@@ -30,7 +30,6 @@ public class Collectible : MonoBehaviour
             text.gameObject.SetActive(true);
             text.text = ": " + score;
         }
-        Debug.Log(score);
     }
 
     void OnTriggerEnter2D(Collider2D other) {
@@ -38,9 +37,7 @@ public class Collectible : MonoBehaviour
         if (other.CompareTag("Collectible") && differentCol) {
             Destroy(other);
             score++;
-            Debug.Log(score);
             differentCol = false;
-
         }
     }
     private void OnTriggerExit2D(Collider2D collision)

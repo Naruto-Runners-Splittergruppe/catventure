@@ -12,8 +12,8 @@ public class EnemyMovement : MonoBehaviour
     private bool touchingGround = false;
 
     private Rigidbody2D rb2d;
-    public static Lifes lifes;
-    public static GameObject player;
+    private Lifes lifes;
+    private GameObject player;
 
     void Start() {
 

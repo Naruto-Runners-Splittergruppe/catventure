@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TestMovement : MonoBehaviour {
 
@@ -29,6 +30,7 @@ public class TestMovement : MonoBehaviour {
     public Color regularColor;
 
     private Lifes lifes;
+    private GameObject player;
     bool touchingGround = false;
     Vector2 regularGravity;
 
@@ -40,6 +42,8 @@ public class TestMovement : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
 
+        player = GameObject.FindGameObjectWithTag("Player");
+        lifes = player.GetComponent<Lifes>();
         rb2d = this.GetComponent<Rigidbody2D>();
         regularGravity = Physics2D.gravity;
 
@@ -146,7 +150,8 @@ public class TestMovement : MonoBehaviour {
         }
 
         if (col.tag == "DeathPit") {
-            lifes.TakeDamage(10);
+            player.GetComponent<TestMovement>().resetToNormal();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
