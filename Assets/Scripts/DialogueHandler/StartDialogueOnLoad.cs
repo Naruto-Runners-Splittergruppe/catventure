@@ -5,6 +5,7 @@ using UnityEngine;
 public class StartDialogueOnLoad : MonoBehaviour
 {
     public Dialogue dialogue;
+    public int startAt = 0;
 
     private DialogueHandler dh;
     // Start is called before the first frame update
@@ -14,7 +15,7 @@ public class StartDialogueOnLoad : MonoBehaviour
 
         if(dialogue != null)
         {
-            dh.StartDialogue(dialogue);
+            dh.StartDialogue(dialogue, startAt);
         }      
     }
 }
