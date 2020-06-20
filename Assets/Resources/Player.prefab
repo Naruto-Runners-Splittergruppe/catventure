@@ -41,10 +41,12 @@ GameObject:
   - component: {fileID: 3714448213325722347}
   - component: {fileID: 3714448213325722344}
   - component: {fileID: 3714448213325722345}
-  - component: {fileID: 3714448213325722350}
-  - component: {fileID: 495674121}
-  - component: {fileID: 495674115}
   - component: {fileID: 495674120}
+  - component: {fileID: 1541887841}
+  - component: {fileID: 1541887842}
+  - component: {fileID: 1541887843}
+  - component: {fileID: 1541887844}
+  - component: {fileID: 1541887840}
   - component: {fileID: 743787901}
   - component: {fileID: 743787909}
   - component: {fileID: 743787910}
@@ -141,84 +143,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!60 &3714448213325722350
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3714448213325722351}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.5, y: 0.5}
-    newSize: {x: 0.5, y: 0.5}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.019999996, y: 0.22913349}
-      - {x: -0.06, y: 0.16}
-      - {x: -0.17261124, y: -0.053770542}
-      - {x: -0.1721606, y: -0.2474514}
-      - {x: 0.14936288, y: -0.24745142}
-      - {x: 0.12765136, y: 0.10507929}
-      - {x: 0.10850875, y: 0.22561967}
---- !u!60 &495674121
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3714448213325722351}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.5, y: 0.5}
-    newSize: {x: 0.5, y: 0.5}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.019999996, y: 0.22913349}
-      - {x: -0.06, y: 0.16}
-      - {x: -0.17261124, y: -0.053770542}
-      - {x: -0.1721606, y: -0.2474514}
-      - {x: 0.14936288, y: -0.24745142}
-      - {x: 0.12765136, y: 0.10507929}
-      - {x: 0.10850875, y: 0.22561967}
---- !u!114 &495674115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3714448213325722351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 577b496fcb1222e468bf5c3cc285f36e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
-  jumpPower: 250
 --- !u!95 &495674120
 Animator:
   serializedVersion: 3
@@ -238,6 +162,112 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!61 &1541887841
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3714448213325722351}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.01452861, y: 0.041068256}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.5, y: 0.5}
+    newSize: {x: 0.5, y: 0.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.26453406, y: 0.28760254}
+  m_EdgeRadius: 0
+--- !u!58 &1541887842
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3714448213325722351}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.014116883, y: -0.102669716}
+  serializedVersion: 2
+  m_Radius: 0.13321328
+--- !u!61 &1541887843
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3714448213325722351}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 1f5a6378b250602488fa28fda125f542, type: 2}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.01452861, y: 0.041068256}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.5, y: 0.5}
+    newSize: {x: 0.5, y: 0.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.26453406, y: 0.28760254}
+  m_EdgeRadius: 0
+--- !u!58 &1541887844
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3714448213325722351}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 1f5a6378b250602488fa28fda125f542, type: 2}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.014116883, y: -0.102669716}
+  serializedVersion: 2
+  m_Radius: 0.13321328
+--- !u!114 &1541887840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3714448213325722351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cee2df18f0edb249b684e806b5f7419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 3
+  jumpVelocity: 200
+  fallMultiplier: 2.5
+  lowJumpMultiplier: 5
+  timeToBreath: 0.5
+  waterResistance: 0.92
+  mySprite: {fileID: 0}
+  underWaterColor: {r: 0.33333334, g: 0.38240725, b: 0.5647059, a: 1}
+  regularColor: {r: 1, g: 1, b: 1, a: 0}
+  cc2d: {fileID: 0}
 --- !u!114 &743787901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,7 +298,6 @@ MonoBehaviour:
   regualColor: {r: 1, g: 1, b: 1, a: 1}
   flashDur: 0.07
   mySprite: {fileID: 3714448213325722344}
-  invicible: 0
 --- !u!114 &743787910
 MonoBehaviour:
   m_ObjectHideFlags: 0

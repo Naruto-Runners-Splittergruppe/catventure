@@ -20,7 +20,11 @@ public class DefaultOptions : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         variableEventSystem = GameObject.FindGameObjectWithTag("VariableEventSystem").GetComponent<VariableEventSystem>();
+        variableEventSystem.WaitForInizialisation += SetVariables;
+    }
 
+    public void SetVariables(object sender, EventArgs e)
+    {
         foreach (StringOption s in stringOptions)
         {
             variableEventSystem.StringEvents.Add(Event<string>.CreateInstance<string>(s.name.ToLower(), s.description.ToLower(), s.value.ToLower()));

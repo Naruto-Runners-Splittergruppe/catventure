@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +11,8 @@ public class DialogueHandler : MonoBehaviour
     private Dialogue dialogue;
     [Header("UI Elements")]
     public Text dialogueText;
+    public Text speakerName;
+    public Image dialogueBackground;
     public Image speakerLeft;
     public Image speakerRight;
     public Image multiDialogueBackground;
@@ -51,55 +55,120 @@ public class DialogueHandler : MonoBehaviour
     {
         bool dialogueHasEnded = false;
         int i = 0;
-        dialogueText.text = "";
 
-        dialogueText.enabled = true;
-
+        EnableBasicDialogue();
         while (!dialogueHasEnded)
         {
             DialogueElement currElement = dialogue.dialogueItems[i];
-            string currentText = GetDialogueTextInCurrentLanguage(currElement);
-            if (currElement.speakerPosition == DialogueElement.AvatarPos.left)
+            if (!currElement.justCallMethode)
             {
-                speakerLeft.enabled = true;
-                speakerLeft.sprite = currElement.speakerPic;
-            }
-            else if (currElement.speakerPosition == DialogueElement.AvatarPos.right)
-            {
-                speakerRight.enabled = true;
-                speakerRight.sprite = currElement.speakerPic;
-            }
-            StartCoroutine("PrintDialogueItem", currElement);
+                EnableBasicDialogue(false);
+                string currentText = GetDialogueTextInCurrentLanguage(currElement);
+                speakerName.text = currElement.speakerName;
 
-            yield return new WaitForSeconds(0.05f);
-            while (!Input.GetButtonDown("Interact"))
-            {
-                yield return null;
-            }
+                if (currElement.speakerPosition == DialogueElement.AvatarPos.left)
+                {
+                    var rotation = speakerLeft.transform.rotation;
+                    speakerLeft.enabled = true;
+                    speakerLeft.sprite = currElement.speakerPic;
 
-            //Print whole Dialogue Element after Interaced is pressed a second time
-            if (!dialogeFinishedPrinting)
-            {
-                StopCoroutine("PrintDialogueItem");
-                dialogueText.text = currentText;
+                    if (currElement.flipSpeakerPic)
+                    {
+                        speakerLeft.transform.rotation = new Quaternion(rotation.x, 180, rotation.z, rotation.w);
+                    }
+                    else
+                    {
+                        speakerLeft.transform.rotation = new Quaternion(rotation.x, 0, rotation.z, rotation.w);
+                    }
+                }
+                else if (currElement.speakerPosition == DialogueElement.AvatarPos.right)
+                {
+                    var rotation = speakerRight.transform.rotation;
+                    speakerRight.enabled = true;
+                    speakerRight.sprite = currElement.speakerPic;
+
+                    if (currElement.flipSpeakerPic)
+                    {
+                        speakerRight.transform.rotation = new Quaternion(rotation.x, 180, rotation.z, rotation.w);
+                    }
+                    else
+                    {
+                        speakerRight.transform.rotation = new Quaternion(rotation.x, 0, rotation.z, rotation.w);
+                    }
+                }
+
+                StartCoroutine("PrintDialogueItem", currElement);
+
                 yield return new WaitForSeconds(0.05f);
                 while (!Input.GetButtonDown("Interact"))
                 {
                     yield return null;
                 }
-            }
-            //ClenUp of old DialogueItem
-            StopCoroutine("PrintDialogueItem");
-            dialogueText.text = "";
 
-            if (currElement.multiChoiceDialogue.Count > 0)
-            {
-                isInMultiChoise = true;
-                SetMultiChoiceDialogue(currElement.multiChoiceDialogue);
-                while (isInMultiChoise)
+                //Print whole Dialogue Element after Interaced is pressed a second time
+                if (!dialogeFinishedPrinting)
                 {
-                    yield return null;
+                    StopCoroutine("PrintDialogueItem");
+                    dialogueText.text = currentText;
+                    yield return new WaitForSeconds(0.05f);
+                    while (!Input.GetButtonDown("Interact"))
+                    {
+                        yield return null;
+                    }
                 }
+                //ClenUp of old DialogueItem
+                StopCoroutine("PrintDialogueItem");
+                dialogueText.text = "";
+
+                if (currElement.multiChoiceDialogue.Count > 0)
+                {
+                    isInMultiChoise = true;
+                    SetMultiChoiceDialogue(currElement.multiChoiceDialogue);
+                    while (isInMultiChoise)
+                    {
+                        yield return null;
+                    }
+                }
+            }
+
+            //Call a methode before the next dialogue element
+            if (currElement.nameOfMethodeToActivateBeforeNextText != "")
+            {
+                DisableCompleteDialogeBox();
+                Type t = CallMethode(currElement.nameOfMethodeToActivateBeforeNextText);
+
+                if (currElement.waitUntilMethodeIsFinished && t != null)
+                {
+                    PropertyInfo pI;
+
+                    if (t != typeof(CutsceneActions))
+                    {
+                        pI = t.BaseType.GetProperty("CallFinished");
+                    }
+                    else
+                    {
+                        pI = t.GetProperty("CallFinished");
+                    }
+
+                    if (pI.PropertyType == typeof(bool))
+                    {
+                        while (!(bool)pI.GetValue(null))
+                        {
+                            yield return new WaitForEndOfFrame();
+                        }
+
+                        pI.SetValue(null,false); 
+                    }
+                    else
+                    {
+                        Debug.LogError("CallFinished of Property: " + pI.Name + " has the wrong Type. Must be bool.");
+                    }
+                }
+
+                do
+                {
+                    yield return new WaitForSeconds(currElement.waitForSecondsAfterMethodeFinished);
+                } while (false);
             }
 
             i++;
@@ -108,8 +177,58 @@ public class DialogueHandler : MonoBehaviour
                 dialogueHasEnded = true;
             }
         }
-        dialogueEndedEventHandler.Invoke(this, null);
-        ChangeEnabledStateOfUiObjects(false);
+
+        if (dialogueEndedEventHandler != null)
+        {
+            dialogueEndedEventHandler.Invoke(this, null);
+        }
+
+        DisableCompleteDialogeBox();
+    }
+
+    private Type CallMethode(string classMethodeString)
+    {
+        string[] classMethodeSeperated = classMethodeString.Split('.');
+        if (classMethodeSeperated.Length != 2)
+        {
+            Debug.LogError("The String: " + classMethodeString + "is no propper Class-Methode String. The Methode can't be executed. If you are using floats please use a _ instead of a .");
+            return null;
+        }
+
+        string methodeName = "";
+        object[] parameters = null;
+
+        if (classMethodeSeperated[1].Contains("(") && classMethodeSeperated[1].Contains(")"))
+        {
+            string[] splittedParams = classMethodeSeperated[1].Split('(');
+            methodeName = splittedParams[0];
+            splittedParams[1] = splittedParams[1].Replace('_', '.');
+            parameters = splittedParams[1].TrimStart('(').TrimEnd(')', ';').Split(',');
+        }
+        else
+        {
+            methodeName = classMethodeSeperated[1].Split('(')[0];
+        }
+
+        Type t = Type.GetType(classMethodeSeperated[0]);
+        MethodInfo mI = t.GetMethod(methodeName);
+
+        if(mI == null)
+        {
+            Debug.LogError("Couldn't find methode name: " + methodeName);
+            return null;
+        }
+
+        if (parameters == null || parameters.Length == 0 || (parameters is string[] && parameters.Length == 1 && ((string)parameters[0]).Equals("")))
+        {
+            mI.Invoke(null, null);
+        }
+        else
+        {
+            mI.Invoke(null, parameters);
+        }
+
+        return t;
     }
 
     IEnumerator PrintDialogueItem(DialogueElement elem)
@@ -126,7 +245,7 @@ public class DialogueHandler : MonoBehaviour
         dialogeFinishedPrinting = true;
     }
 
-    private void ChangeEnabledStateOfUiObjects(bool state)
+    private void ChangeEnabledStateOfChangingUiObjects(bool state)
     {
         speakerLeft.enabled = state;
         speakerRight.enabled = state;
@@ -184,7 +303,7 @@ public class DialogueHandler : MonoBehaviour
         {
             if (Input.GetAxis("Vertical") != 0)
             {
-                if (Input.GetAxis("Vertical") < 0 && currentText+1 < mcd.Count)
+                if (Input.GetAxis("Vertical") < 0 && currentText + 1 < mcd.Count)
                 {
                     currentUiOption++;
                     if (currentUiOption == 3 && forwardMoves + multiOptions.Count < mcd.Count)
@@ -223,11 +342,11 @@ public class DialogueHandler : MonoBehaviour
                 selectedItem = multiOptions[currentUiOption];
                 selectedItem.color = Color.green;
 
-                if(currentText == 0)
+                if (currentText == 0)
                 {
                     upwardsArrow.enabled = false;
                 }
-                if(currentText == mcd.Count-1)
+                if (currentText == mcd.Count - 1)
                 {
                     downwardsArrow.enabled = false;
                 }
@@ -265,5 +384,36 @@ public class DialogueHandler : MonoBehaviour
             downwardsArrow.enabled = true;
         }
         return currentTextCounter;
+    }
+
+    private void DisableCompleteDialogeBox()
+    {
+        speakerRight.enabled = false;
+        speakerLeft.enabled = false;
+        dialogueText.enabled = false;
+        multiDialogueBackground.enabled = false;
+        multiOption1.enabled = false;
+        multiOption2.enabled = false;
+        multiOption3.enabled = false;
+        upwardsArrow.enabled = false;
+        downwardsArrow.enabled = false;
+        dialogueBackground.enabled = false;
+        speakerName.enabled = false;
+    }
+
+    private void EnableBasicDialogue(bool clean = true)
+    {
+        if(clean)
+        {
+            dialogueText.text = "";
+            multiOption1.text = "";
+            multiOption2.text = "";
+            multiOption3.text = "";
+            speakerName.text = "";
+        }
+        
+        dialogueText.enabled = true;
+        dialogueBackground.enabled = true;
+        speakerName.enabled = true;
     }
 }

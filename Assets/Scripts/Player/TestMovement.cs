@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using Boo.Lang.Environments;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TestMovement : MonoBehaviour {
 
@@ -29,24 +31,35 @@ public class TestMovement : MonoBehaviour {
     public Color regularColor;
 
     private Lifes lifes;
+    private GameObject player;
     bool touchingGround = false;
     Vector2 regularGravity;
 
     public CircleCollider2D cc2d;
 
     // Collectibles
-    private int score;
+    private int score = 0;
 
     // Start is called before the first frame update
     void Start() {
 
+        player = GameObject.FindGameObjectWithTag("Player");
+        lifes = player.GetComponent<Lifes>();
         rb2d = this.GetComponent<Rigidbody2D>();
         regularGravity = Physics2D.gravity;
 
-        gravityInWater = new Vector2(0, -3);
-        timeLeftUnderwater = timeToBreath;
+        if (cc2d == null)
+        {
+            cc2d = GetComponent<CircleCollider2D>();
+        }
 
-        int score = 0;
+        if(mySprite == null)
+        {
+            mySprite = GetComponent<SpriteRenderer>();
+        }
+
+        gravityInWater = new Vector2(0, -3);
+        timeLeftUnderwater = timeToBreath;        
     }
 
     // Update is called once per frame
@@ -148,7 +161,8 @@ public class TestMovement : MonoBehaviour {
         }
 
         if (col.tag == "DeathPit") {
-            lifes.TakeDamage(1);
+            player.GetComponent<TestMovement>().resetToNormal();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
@@ -159,5 +173,11 @@ public class TestMovement : MonoBehaviour {
         if (col.CompareTag("Water")) {
             inWater = false;
         }
+    }
+
+    public void resetToNormal()
+    {
+        Physics2D.gravity = regularGravity;
+        inWater = false;
     }
 }

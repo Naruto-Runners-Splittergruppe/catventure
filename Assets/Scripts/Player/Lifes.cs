@@ -38,15 +38,25 @@ public class Lifes : MonoBehaviour
         lifes = player.GetComponent<Lifes>();
         health = 2;
         invicible = false;
+
+        GameObject[] hearts = GameObject.FindGameObjectsWithTag("Hearts");
+
+        if(heart1 == null)
+        {
+            heart1 = hearts[0];
+        }
+        if(heart2 == null)
+        {
+            heart2 = hearts[1];
+        }
     }
 
     // Update is called once per frame
     void Update()
     {        
-        //TODO Handle if heart1 || heart2 == null
         if(health == 2)
         {
-            heart1.gameObject.SetActive(false);
+            heart1.gameObject.SetActive(true);
             heart2.gameObject.SetActive(true);
         }
         else if (health == 1)
@@ -58,7 +68,7 @@ public class Lifes : MonoBehaviour
         {
             heart1.gameObject.SetActive(false);
             heart2.gameObject.SetActive(false);
-            player.GetComponent<Movement>().resetToNormal();
+            player.GetComponent<TestMovement>().resetToNormal();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         StartCoroutine(Flashing());
