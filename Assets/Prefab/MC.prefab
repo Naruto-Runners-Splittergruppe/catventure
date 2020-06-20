@@ -323,7 +323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 1981594427049101287}
-  bulletPrefab: {fileID: 6265545206422994026, guid: 3ab4d3aaa007e5847b791c3adcb6557c,
+  bulletPrefab: {fileID: 7445524336346116399, guid: fe050f9a3fbdc5c4384439af170ae3ee,
     type: 3}
 --- !u!58 &2885777503920075758
 CircleCollider2D:
