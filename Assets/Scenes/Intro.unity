@@ -787,7 +787,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue: {fileID: 11400000, guid: 127ab0232afa7894aa2f99dd7551ae2c, type: 2}
-  startAt: 30
+  startAt: 0
 --- !u!4 &1245490474
 Transform:
   m_ObjectHideFlags: 0
