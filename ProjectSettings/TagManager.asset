@@ -18,6 +18,7 @@ TagManager:
   - DeathPit
   - UI
   - Hearts
+  - Spike
   layers:
   - Default
   - TransparentFX

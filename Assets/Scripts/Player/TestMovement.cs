@@ -35,6 +35,7 @@ public class TestMovement : MonoBehaviour {
     private GameObject player;
     bool touchingGround = false;
     Vector2 regularGravity;
+    bool otherEnemy;
 
     public CircleCollider2D cc2d;
 
@@ -152,6 +153,11 @@ public class TestMovement : MonoBehaviour {
         if (col.CompareTag("Ground") && cc2d.IsTouching(col)) {
             touchingGround = true;
         }
+        if (col.tag == "Spike" && otherEnemy && !lifes.Invicible)
+        {
+            lifes.TakeDamage(1);
+            otherEnemy = false;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col) {
@@ -168,6 +174,7 @@ public class TestMovement : MonoBehaviour {
             player.GetComponent<TestMovement>().resetToNormal();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+        
     }
 
     void OnTriggerExit2D(Collider2D col) {
@@ -176,6 +183,10 @@ public class TestMovement : MonoBehaviour {
         }
         if (col.CompareTag("Water")) {
             inWater = false;
+        }
+        if (col.CompareTag("Spike") || col.CompareTag("Enemy"))
+        {
+            otherEnemy = true;
         }
     }
 
