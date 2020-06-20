@@ -38,12 +38,18 @@ public class DialogueHandler : MonoBehaviour
         multiOptions.Add(multiOption3);
     }
 
-    public void StartDialogue(Dialogue dialogue)
+    public void StartDialogue(Dialogue dialogue, int startAt = 0)
     {
+        if(startAt > dialogue.dialogueItems.Count)
+        {
+            Debug.LogError("startAt was to big. Dialogue has only: " + dialogue.dialogueItems.Count + " items.");
+            startAt = 0;
+        }
+
         this.dialogue = dialogue;
         if (dialogueText != null && speakerLeft != null && speakerRight != null)
         {
-            StartCoroutine("PrintDialogue");
+            StartCoroutine("PrintDialogue", startAt);
         }
         else
         {
@@ -51,10 +57,10 @@ public class DialogueHandler : MonoBehaviour
         }
     }
 
-    IEnumerator PrintDialogue()
+    IEnumerator PrintDialogue(int startAt)
     {
         bool dialogueHasEnded = false;
-        int i = 0;
+        int i = startAt;
 
         EnableBasicDialogue();
         while (!dialogueHasEnded)

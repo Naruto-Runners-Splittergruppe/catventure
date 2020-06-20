@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CutsceneActions : MonoBehaviour
 {
@@ -55,5 +56,11 @@ public class CutsceneActions : MonoBehaviour
     {
         fadeOut.FadeOutAndIn(2, DEFAULT_FADE);
         CallFinished = true;
+    }
+
+    public static void LoadLevel(object levelId)
+    {
+        int id = int.Parse((string) levelId);
+        SceneManager.LoadScene(id);
     }
 }

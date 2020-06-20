@@ -719,7 +719,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1216171252}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 17.79, y: 5.36, z: 0}
+  m_LocalPosition: {x: 14.68, y: 2.32, z: 0}
   m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_Children: []
   m_Father: {fileID: 360920204}
@@ -787,6 +787,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue: {fileID: 11400000, guid: 127ab0232afa7894aa2f99dd7551ae2c, type: 2}
+  startAt: 30
 --- !u!4 &1245490474
 Transform:
   m_ObjectHideFlags: 0
@@ -1017,15 +1018,19 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1541887840, guid: 964b7ff2ce932d14da8ba4be9983246d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3714448213325722347, guid: 964b7ff2ce932d14da8ba4be9983246d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.85
+      value: 3.42
       objectReference: {fileID: 0}
     - target: {fileID: 3714448213325722347, guid: 964b7ff2ce932d14da8ba4be9983246d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.63
+      value: 5.75
       objectReference: {fileID: 0}
     - target: {fileID: 3714448213325722347, guid: 964b7ff2ce932d14da8ba4be9983246d,
         type: 3}
@@ -1072,10 +1077,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3714448213325722347, guid: 964b7ff2ce932d14da8ba4be9983246d,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.4193778
+      objectReference: {fileID: 0}
+    - target: {fileID: 3714448213325722347, guid: 964b7ff2ce932d14da8ba4be9983246d,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.4193778
+      objectReference: {fileID: 0}
+    - target: {fileID: 3714448213325722347, guid: 964b7ff2ce932d14da8ba4be9983246d,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3.4193778
+      objectReference: {fileID: 0}
     - target: {fileID: 3714448213325722351, guid: 964b7ff2ce932d14da8ba4be9983246d,
         type: 3}
       propertyPath: m_Name
       value: CutscenePlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 3714448213325722351, guid: 964b7ff2ce932d14da8ba4be9983246d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 964b7ff2ce932d14da8ba4be9983246d, type: 3}

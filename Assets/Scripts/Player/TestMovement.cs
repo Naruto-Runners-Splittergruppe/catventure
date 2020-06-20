@@ -1,6 +1,7 @@
 ﻿using Boo.Lang.Environments;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +12,7 @@ public class TestMovement : MonoBehaviour {
     private Vector2 movement;
     private Rigidbody2D rb2d;
     public float jumpVelocity = 200f;
+    public bool movementDisabled = false;
     private bool rotate = true;
 
     // fall amplifier
@@ -65,7 +67,10 @@ public class TestMovement : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
-        movement.x = Input.GetAxisRaw("Horizontal");
+        if (!movementDisabled)
+        {
+            movement.x = Input.GetAxisRaw("Horizontal");
+        }
 
         // Water movement
         if (inWater) {
@@ -108,9 +113,9 @@ public class TestMovement : MonoBehaviour {
                 Physics2D.gravity = regularGravity;
             }
         }
-
+ 
         // to Jump
-        if (Input.GetButtonDown("Jump") && touchingGround) {
+        if (Input.GetButtonDown("Jump") && touchingGround && !movementDisabled) {
             rb2d.AddForce(Vector2.up * jumpVelocity);
         }
 
@@ -179,5 +184,31 @@ public class TestMovement : MonoBehaviour {
     {
         Physics2D.gravity = regularGravity;
         inWater = false;
+    }
+
+    public void MoveToLocationXAxis(object xStr)
+    {
+        float x = float.Parse(xStr as string, CultureInfo.InvariantCulture);
+
+        StartCoroutine("MoveToXAxis", x);
+    }
+
+    IEnumerator MoveToXAxis(float endPosX)
+    {
+        movementDisabled = true;
+        int appliedForce = 1;
+
+        if(endPosX < player.transform.position.x)
+        {
+            appliedForce = -1;
+        }
+
+        while(endPosX < player.transform.position.x)
+        {
+            movement.x = appliedForce;
+            yield return new WaitForEndOfFrame();
+        }
+
+        movementDisabled = false;
     }
 }
