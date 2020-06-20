@@ -64,7 +64,7 @@ Transform:
   m_GameObject: {fileID: 3714448213325722351}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.06463772, y: -1.339213, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3.2641926, y: 3.2641926, z: 3.2641926}
   m_Children:
   - {fileID: 1728212444}
   m_Father: {fileID: 0}
@@ -219,6 +219,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   jumpPower: 250
+  lifes: {fileID: 0}
+  mySprite: {fileID: 0}
+  underWaterColor: {r: 0, g: 0, b: 0, a: 0}
+  regualColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!95 &495674120
 Animator:
   serializedVersion: 3
@@ -268,7 +272,6 @@ MonoBehaviour:
   regualColor: {r: 1, g: 1, b: 1, a: 1}
   flashDur: 0.07
   mySprite: {fileID: 3714448213325722344}
-  invicible: 0
 --- !u!114 &743787910
 MonoBehaviour:
   m_ObjectHideFlags: 0

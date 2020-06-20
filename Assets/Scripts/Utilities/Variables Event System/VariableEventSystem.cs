@@ -12,12 +12,19 @@ public class VariableEventSystem : MonoBehaviour
 
     public List<Event<string>> StringEvents { get; set; }
 
+    public EventHandler WaitForInizialisation { get; set; }
+
     private void Start()
     {
         BoolEvents = new List<Event<bool>>();
         IntEvents = new List<Event<int>>();
         FloatEvents = new List<Event<float>>();
         StringEvents = new List<Event<string>>();
+
+        if (WaitForInizialisation != null)
+        {
+            WaitForInizialisation.Invoke(this, null);
+        }
 
         DontDestroyOnLoad(gameObject);
     }

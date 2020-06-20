@@ -27,7 +27,6 @@ public class NotificationHandler : MonoBehaviour
         NotificationElement = defaultNotificationElement;
 
         variableEventSystem = GameObject.FindGameObjectWithTag("VariableEventSystem").GetComponent<VariableEventSystem>();
-        language = variableEventSystem.FindEventInStrings("Language").EventVariable;
 
         notificationText = notificationUIGroup.GetComponentInChildren<Text>();
         portrait = notificationUIGroup.GetComponentInChildren<Image>();
@@ -36,11 +35,26 @@ public class NotificationHandler : MonoBehaviour
         defaultHiddenPositionY = rectTransform.anchoredPosition.y;
 
         //Only for Debugging:
-        PopUpNotification(NotificationElement);
+        //PopUpNotification(NotificationElement);
+    }
+
+    private void SetLanguage()
+    {
+        if (variableEventSystem.FindEventInStrings("Language") != new Event<string>())
+        {
+            language = variableEventSystem.FindEventInStrings("Language").EventVariable;
+        }
+        else
+        {
+            Debug.LogError("Variable Event System => Language, not found. Reverting to default language (english)");
+            language = "english";
+        }
     }
 
     public void PopUpNotification(NotificationElement ne)
     {
+        SetLanguage();
+
         if (ne != null)
         {
             NotificationElement = ne;

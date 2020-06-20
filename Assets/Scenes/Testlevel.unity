@@ -197,11 +197,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 370819628}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1629734694}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &655435047
@@ -249,7 +249,7 @@ PrefabInstance:
     - target: {fileID: -8891025709431635756, guid: d6eb77fcb8b4d5d4b9717e7aa0304344,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8891025709431635756, guid: d6eb77fcb8b4d5d4b9717e7aa0304344,
         type: 3}
@@ -314,6 +314,11 @@ MonoBehaviour:
     m_Bits: 0
   fallMultiplier: 2
   lowJumpMultiplier: 5
+  timeToBreath: 3
+  waterResistance: 0.92
+  mySprite: {fileID: 0}
+  underWaterColor: {r: 0, g: 0, b: 0, a: 0}
+  regularColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!58 &1629734690
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -435,9 +440,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1629734688}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.061483607, y: -0.63312376, z: 0}
+  m_LocalPosition: {x: 0.89, y: -38.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 370819631}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
