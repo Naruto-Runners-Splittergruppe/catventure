@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Boo.Lang.Environments;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -46,6 +47,16 @@ public class TestMovement : MonoBehaviour {
         lifes = player.GetComponent<Lifes>();
         rb2d = this.GetComponent<Rigidbody2D>();
         regularGravity = Physics2D.gravity;
+
+        if (cc2d == null)
+        {
+            cc2d = GetComponent<CircleCollider2D>();
+        }
+
+        if(mySprite == null)
+        {
+            mySprite = GetComponent<SpriteRenderer>();
+        }
 
         gravityInWater = new Vector2(0, -3);
         timeLeftUnderwater = timeToBreath;        

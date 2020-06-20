@@ -661,7 +661,7 @@ MonoBehaviour:
     nameOfMethodeToActivateBeforeNextText: CutsceneActions.FadeOutAndInDefault();
     waitUntilMethodeIsFinished: 1
     justCallMethode: 1
-    waitForSecondsAfterMethodeFinished: 3
+    waitForSecondsAfterMethodeFinished: 3.2
     multiChoiceDialogue: []
   - dialogueName: Life 02
     speakerName: MC
@@ -742,7 +742,7 @@ MonoBehaviour:
     nameOfMethodeToActivateBeforeNextText: 
     waitUntilMethodeIsFinished: 1
     justCallMethode: 1
-    waitForSecondsAfterMethodeFinished: 3
+    waitForSecondsAfterMethodeFinished: 3.2
     multiChoiceDialogue: []
   - dialogueName: Life 03
     speakerName: MC

@@ -21,6 +21,7 @@ public class IntroActions : CutsceneActions
     public static void PlayerClimpUp()
     {
         player.transform.position = new Vector2(-2.77f, 5.63f);
+
     }
 
     #region Life 1

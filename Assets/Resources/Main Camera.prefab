@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b642e5fd647c3f4c88a2b47a3edba7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followTransform: {fileID: 0}
-  mapBounds: {fileID: 0}
+  player: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &7174961470442259661
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 7174961470442259662}
   m_Layer: 0
   m_Name: Leben 2
-  m_TagString: Untagged
+  m_TagString: Hearts
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 7174961470719003701}
   m_Layer: 0
   m_Name: Leben 1
-  m_TagString: Untagged
+  m_TagString: Hearts
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
