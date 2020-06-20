@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TestMovement : MonoBehaviour {
 
@@ -9,9 +10,7 @@ public class TestMovement : MonoBehaviour {
     private Vector2 movement;
     private Rigidbody2D rb2d;
     public float jumpVelocity = 200f;
-    
-    // checks for Ground Layer
-    public LayerMask groundLayer;
+    private bool rotate = true;
 
     // fall amplifier
     public float fallMultiplier = 2.5f;
@@ -19,7 +18,7 @@ public class TestMovement : MonoBehaviour {
 
     // Water behaviour
     private bool inWater = false;
-    public float timeToBreath = 3f;
+    public float timeToBreath = 0.5f;
     private float timeLeftUnderwater;
     // slowed movement
     private bool justEntered = false;
@@ -31,17 +30,25 @@ public class TestMovement : MonoBehaviour {
     public Color regularColor;
 
     private Lifes lifes;
+    private GameObject player;
     bool touchingGround = false;
     Vector2 regularGravity;
+
+    public CircleCollider2D cc2d;
+
+    // Collectibles
+    private int score = 0;
 
     // Start is called before the first frame update
     void Start() {
 
+        player = GameObject.FindGameObjectWithTag("Player");
+        lifes = player.GetComponent<Lifes>();
         rb2d = this.GetComponent<Rigidbody2D>();
         regularGravity = Physics2D.gravity;
 
         gravityInWater = new Vector2(0, -3);
-        timeLeftUnderwater = timeToBreath;
+        timeLeftUnderwater = timeToBreath;        
     }
 
     // Update is called once per frame
@@ -80,7 +87,7 @@ public class TestMovement : MonoBehaviour {
 
                 justEntered = false;
             }
-            
+
             // prevents Player from Sliding down Slopes
             if (movement.x == 0 && touchingGround && !Input.GetButtonDown("Jump")) {
                 rb2d.velocity = Vector2.zero;
@@ -90,7 +97,7 @@ public class TestMovement : MonoBehaviour {
                 Physics2D.gravity = regularGravity;
             }
         }
-        
+
         // to Jump
         if (Input.GetButtonDown("Jump") && touchingGround) {
             rb2d.AddForce(Vector2.up * jumpVelocity);
@@ -103,6 +110,22 @@ public class TestMovement : MonoBehaviour {
         else if (rb2d.velocity.y > 0 && !Input.GetButton("Jump")) {
             rb2d.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
+
+        // rotation
+        if (movement.x < 0 && rotate) {
+            transform.Rotate(0, 180, 0);
+            rotate = false;
+        }
+        else if (movement.x > 0 && !rotate) {
+            transform.Rotate(0, 180, 0);
+            rotate = true;
+        }
+
+        // prevents getting stuck on Slopes
+        if (rb2d.velocity.y < 0 && touchingGround) {
+            rb2d.velocity *= -1;
+        }
+
     }
     // runs every few frames, more efficient, used 
     void FixedUpdate() {
@@ -111,7 +134,7 @@ public class TestMovement : MonoBehaviour {
     }
 
     void OnTriggerStay2D(Collider2D col) {
-        if (col.CompareTag("Ground")) {
+        if (col.CompareTag("Ground") && cc2d.IsTouching(col)) {
             touchingGround = true;
         }
     }
@@ -120,14 +143,30 @@ public class TestMovement : MonoBehaviour {
         if (col.CompareTag("Water")) {
             inWater = true;
         }
+
+        if (col.tag == "Collectible") {
+            score++;
+            Destroy(col.gameObject);
+        }
+
+        if (col.tag == "DeathPit") {
+            player.GetComponent<TestMovement>().resetToNormal();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
     void OnTriggerExit2D(Collider2D col) {
-        if (col.CompareTag("Ground")) {
+        if (col.CompareTag("Ground") && !cc2d.IsTouching(col)) {
             touchingGround = false;
         }
         if (col.CompareTag("Water")) {
             inWater = false;
         }
+    }
+
+    public void resetToNormal()
+    {
+        Physics2D.gravity = regularGravity;
+        inWater = false;
     }
 }

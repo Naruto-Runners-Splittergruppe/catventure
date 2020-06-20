@@ -156,6 +156,5 @@ public class Movement : MonoBehaviour
         jumpPower = normalJumpPower;
         Physics2D.gravity = normalGravity;
         inWater = false;
-        breathInSec = 3;
     }
 }

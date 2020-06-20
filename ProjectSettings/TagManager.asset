@@ -14,6 +14,8 @@ TagManager:
   - Bullet
   - Enemy Bullet
   - Water
+  - Collectible
+  - DeathPit
   - UI
   layers:
   - Default
@@ -27,7 +29,7 @@ TagManager:
   - RigidBodyObject
   - Enemy
   - Ground
-  - 
+  - User Interface
   - 
   - 
   - 
@@ -51,6 +53,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: User Interface
+    uniqueID: 2064910665
     locked: 0
   - name: RigidBodyObject
     uniqueID: 3307371487

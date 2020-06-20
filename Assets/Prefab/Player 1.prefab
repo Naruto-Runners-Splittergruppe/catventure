@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7778666821635682688}
   - component: {fileID: 7778666821635682698}
   - component: {fileID: 7778666821635682689}
+  - component: {fileID: 4826027689944029030}
   - component: {fileID: 7778666821882224628}
   - component: {fileID: 7778666821882224399}
   - component: {fileID: 6376884569855019868}
@@ -196,7 +197,7 @@ MonoBehaviour:
   speed: 2
   jumpPower: 250
   lifes: {fileID: 0}
-  mySprite: {fileID: 6376884568512815201}
+  mySprite: {fileID: 0}
   underWaterColor: {r: 0, g: 0, b: 0, a: 0}
   regualColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!95 &7778666821635682689
@@ -218,6 +219,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4826027689944029030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6376884568512815206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66592556bfffbd344a8bbdb1d883ee6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heart1: {fileID: 0}
+  heart2: {fileID: 0}
+  flashColor: {r: 1, g: 0.6462264, b: 0.6462264, a: 1}
+  regualColor: {r: 1, g: 1, b: 1, a: 1}
+  flashDur: 0.05
+  mySprite: {fileID: 6376884568512815201}
 --- !u!114 &7778666821882224628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,16 +381,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 3
   jumpVelocity: 200
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 1024
   fallMultiplier: 2.5
   lowJumpMultiplier: 5
-  timeToBreath: 3
-  waterResistance: 0.97
+  timeToBreath: 0.5
+  waterResistance: 0.92
   mySprite: {fileID: 6376884568512815201}
-  underWaterColor: {r: 0.41037738, g: 0.6233931, b: 1, a: 1}
-  regularColor: {r: 1, g: 1, b: 1, a: 1}
+  underWaterColor: {r: 0.33333334, g: 0.38240725, b: 0.5647059, a: 1}
+  regularColor: {r: 1, g: 1, b: 1, a: 0}
 --- !u!1 &6376884569805763589
 GameObject:
   m_ObjectHideFlags: 0

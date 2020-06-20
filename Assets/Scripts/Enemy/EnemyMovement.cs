@@ -9,12 +9,18 @@ public class EnemyMovement : MonoBehaviour
     public bool MoveLeft;
     private float temp;
 
-    private Transform target;
+    private bool touchingGround = false;
 
+    private Rigidbody2D rb2d;
+    private Lifes lifes;
+    private GameObject player;
 
     void Start() {
 
         temp = speed;
+        player = GameObject.FindGameObjectWithTag("Player");
+        lifes = player.GetComponent<Lifes>();
+        rb2d = this.GetComponent<Rigidbody2D>();
     }
 
 
@@ -31,11 +37,30 @@ public class EnemyMovement : MonoBehaviour
             transform.Translate(2 * Time.deltaTime * speed, 0, 0);
             transform.localScale = new Vector2(-2, 2);
         }
+
+       if (rb2d.velocity.y < 0 && touchingGround) {
+            rb2d.velocity *= -1;
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D trig) {
+
+        if (trig.CompareTag("Ground")) {
+            touchingGround = true;
+        }
+
+        if (trig.CompareTag("Player") && !lifes.Invicible)
+        {
+            lifes.TakeDamage(1);
+            speed = 0;
+            rb2d.velocity = Vector2.zero;
+            rb2d.mass = rb2d.mass * 10;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D trig)
     {
-        if (trig.gameObject.CompareTag("turn"))
+        if (trig.CompareTag("turn"))
         {
             if (MoveLeft)
             {
@@ -45,17 +70,17 @@ public class EnemyMovement : MonoBehaviour
             {
                 MoveLeft = true;
             }
-        }
-
-        if (trig.gameObject.CompareTag("Player")) {
-            speed = 0;
-        }
+        }       
     }
 
     void OnTriggerExit2D(Collider2D trig) {
         
-        if (trig.gameObject.CompareTag("Player")) {
+        if (trig.CompareTag("Player")) {
             speed = temp;
+        }
+
+        if (trig.CompareTag("Ground")) {
+            touchingGround = false;
         }
     }
 }
