@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -41,6 +42,9 @@ public class TestMovement : MonoBehaviour {
 
     // Collectibles
     private int score = 0;
+
+    public Vector2 Movement { get { return movement; } set { movement = value; } }
+    public bool IsJumping { get; set; }
 
     // Start is called before the first frame update
     void Start() {
@@ -117,6 +121,7 @@ public class TestMovement : MonoBehaviour {
         // to Jump
         if (Input.GetButtonDown("Jump") && touchingGround && !movementDisabled) {
             rb2d.AddForce(Vector2.up * jumpVelocity);
+            IsJumping = true;
         }
 
         // high- and low- Jump
@@ -152,6 +157,7 @@ public class TestMovement : MonoBehaviour {
     void OnTriggerStay2D(Collider2D col) {
         if (col.CompareTag("Ground") && cc2d.IsTouching(col)) {
             touchingGround = true;
+            IsJumping = false;
         }
         if (col.tag == "Spike" && otherEnemy && !lifes.Invicible)
         {
