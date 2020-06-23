@@ -22,6 +22,7 @@ public class DialogueHandler : MonoBehaviour
     public string choisePointer = "> ";
     public Text upwardsArrow;
     public Text downwardsArrow;
+    public Image eButton;
     [Header("----------")]
     public string language = "english";
     public event EventHandler dialogueEndedEventHandler;
@@ -404,6 +405,7 @@ public class DialogueHandler : MonoBehaviour
         upwardsArrow.enabled = false;
         downwardsArrow.enabled = false;
         dialogueBackground.enabled = false;
+        eButton.enabled = false;
         speakerName.enabled = false;
     }
 
@@ -419,6 +421,7 @@ public class DialogueHandler : MonoBehaviour
         }
         
         dialogueText.enabled = true;
+        eButton.enabled = true;
         dialogueBackground.enabled = true;
         speakerName.enabled = true;
     }

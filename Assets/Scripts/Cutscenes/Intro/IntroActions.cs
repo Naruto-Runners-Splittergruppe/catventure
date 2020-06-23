@@ -24,7 +24,7 @@ public class IntroActions : CutsceneActions
 
     }
 
-    #region Life 1
+    #region Lifes General
     public static void PlayerJumpForIntroFirst(object speedMultiplStr)
     {
         float speedMultipl = float.Parse(speedMultiplStr as string, CultureInfo.InvariantCulture);
@@ -33,6 +33,11 @@ public class IntroActions : CutsceneActions
         rb2dPlayer.AddForce((Vector2.up + Vector2.right) * speedMultipl);
 
         MethodeEndActions();
+    }
+
+    public static void FadeOutAndInDefaultAndSubtractLife()
+    {
+        FadeOutAndInDefault();
     }
 
     #endregion

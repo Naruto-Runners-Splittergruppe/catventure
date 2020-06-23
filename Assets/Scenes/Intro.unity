@@ -305,6 +305,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3974372296353442951, guid: 033e2d6eb03337b4ebb1169e59f08357,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5023875490823321742, guid: 033e2d6eb03337b4ebb1169e59f08357,
         type: 3}
       propertyPath: m_Enabled
@@ -320,6 +325,11 @@ PrefabInstance:
       propertyPath: dialogueBackground
       value: 
       objectReference: {fileID: 785138495}
+    - target: {fileID: 7101896559960401585, guid: 033e2d6eb03337b4ebb1169e59f08357,
+        type: 3}
+      propertyPath: eButton
+      value: 
+      objectReference: {fileID: 1999014756}
     - target: {fileID: 7101896560084560343, guid: 033e2d6eb03337b4ebb1169e59f08357,
         type: 3}
       propertyPath: m_Enabled
@@ -1152,6 +1162,18 @@ PolygonCollider2D:
       - {x: -10.45422, y: -1.6938672}
       - {x: -12.495988, y: -3.8299146}
       - {x: -11.351089, y: -3.7825584}
+--- !u!114 &1999014756 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3974372296353442951, guid: 033e2d6eb03337b4ebb1169e59f08357,
+    type: 3}
+  m_PrefabInstance: {fileID: 390322198}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6029671154459780679
 PrefabInstance:
   m_ObjectHideFlags: 0
