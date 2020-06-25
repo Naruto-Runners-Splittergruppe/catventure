@@ -38,6 +38,7 @@ public class IntroActions : CutsceneActions
     public static void FadeOutAndInDefaultAndSubtractLife()
     {
         FadeOutAndInDefault();
+
     }
 
     #endregion
